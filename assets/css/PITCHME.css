@@ -1,5 +1,5 @@
 body {
-  color: #191970;
+  color: blue;
   background-color: white;
 }
 
@@ -13,13 +13,13 @@ body {
 
 .reveal {
   font-family: "Georgia", serif;
-  color: #191970;
+  color: blue;
   font-size: 20px;
 }
 
 .reveal h1,
 .reveal h2 {
-  color: #191970;
+  color: blue;
   font-family: "Georgia", serif;
   text-transform: none;
   margin: 0 0 15px 0;
@@ -34,7 +34,7 @@ body {
 .reveal h4,
 .reveal h5,
 .reveal h6 {
-  color: #191970;
+  color: blue;
   font-family: "Georgia", serif;
   text-transform: none;
   margin: 0 0 15px 0;
