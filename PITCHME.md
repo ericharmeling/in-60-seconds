@@ -23,10 +23,14 @@
 
 "*CockroachDB is a distributed SQL database built on a transactional and strongly-consistent key-value store.*" - [FAQs: What is CockroachDB?](https://www.cockroachlabs.com/docs/v19.1/frequently-asked-questions.html#what-is-cockroachdb)
 
+---
+
+## Overview
+
+### What is CockroachDB?
+
 @snap[west span-150]
-@ul
 Users interact with a SQL client that interfaces with other components that handle distributing, replicating, and storing data in a transactional way, that guarantees **ACID** properties.
-@ulend
 @snapend
 
 @snap[south-west span-150]
@@ -40,12 +44,11 @@ Users interact with a SQL client that interfaces with other components that hand
 
 ---
 
-
 ## Overview
 
 ### Architecture
 
-@snap[midpoint]
+@snap[midpoint span-150]
 @ul[spaced text-white]
 - **SQL** Layer: "*Translate client SQL queries to KV operations.*"
 - **Transactional** Layer: "*Allow atomic changes to multiple KV entries.*"
@@ -144,7 +147,7 @@ Users interact with a SQL client that interfaces with other components that hand
 
 ### Consensus
 
-@snap[midpoint]
+@snap[midpoint span-150]
 @ul[spaced text-white]
 - CockroachDB uses the Raft consensus algorithm to determine which replica to distribute across a cluster.
 - The replica chosen is the **leader**. The other replicas are the **followers**.
