@@ -5,12 +5,14 @@
 ## Agenda
 
 @snap[west span-50]
+@ul[spaced text-white]
 - **Overview**
 - **Storage**
 - **Replication & Distribution**
 - **Reading & Writing**
 - **Fault-tolerance**
 - **Consistency**
+@ulend
 @snapend
 
 ---
