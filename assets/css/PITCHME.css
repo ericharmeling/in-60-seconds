@@ -21,6 +21,12 @@ body {
   font-size: 36px;
 }
 
+.reveal ol {
+  font-family: "Bitter";
+  color: #111D39;
+  font-size: 36px;
+}
+
 .reveal p,
 .reveal ul,
 .reveal div,
