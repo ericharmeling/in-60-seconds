@@ -118,7 +118,7 @@
 ![](assets/img/keyspace1.png)
 @snapend
 
-@snap[midpoint text-left span-80]
+@snap[midpoint text-left span-70]
 The "keyspace" can be represented as a monolothic, sorted map.
 @snapend
 
