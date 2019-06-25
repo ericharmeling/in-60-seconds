@@ -21,14 +21,8 @@
 
 "*CockroachDB is a distributed SQL database built on a transactional and strongly-consistent key-value store.*" - [FAQs: What is CockroachDB?](https://www.cockroachlabs.com/docs/v19.1/frequently-asked-questions.html#what-is-cockroachdb)
 
----
-
-## Overview
-
-### What is CockroachDB?
-
 @snap[midpoint]
-Basically, you have a SQL client that interfaces with other components that handle distributing, replicating, and storing data in a way that guarantees **ACID** properties.
+Users interact with a SQL client that interfaces with other components that handle distributing, replicating, and storing data in a way that guarantees **ACID** properties.
 @snapend
 
 @snap[south]
@@ -348,7 +342,18 @@ Start with example cluster: 3 nodes, 3 tables, 3 ranges, 3 replicas
 ### How does CockroachDB guarantee consistency?
 
 @ul[spaced text-white]
-- Transactions are atomic, serializable ("isolated"), and durable (the A, I, and D in ACID).
+- Recall that transactions are atomic, serializable ("isolated"), and durable (the A, I, and D in ACID).
+- C is the consistency.
+@ulend
+
+---
+
+## Consistency
+
+### How does CockroachDB guarantee consistency?
+
+@ul[spaced text-white]
+- Recall that transactions are atomic, serializable ("isolated"), and durable (the A, I, and D in ACID).
 - C is the consistency.
 @ulend
 
