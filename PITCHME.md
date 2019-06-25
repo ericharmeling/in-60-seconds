@@ -114,11 +114,12 @@
 ## Storage
 ### Key-value store
 
-@snap[midpoint span-100]
+@snap[midpoint text-right span-40]
 ![](assets/img/keyspace1.png)
+@snapend
 
-
- Monolithic "keyspace" representation.
+@snap[midpoint text-left span-50]
+The "keyspace" can be represented as a monolothic, sorted map.
 @snapend
 
 ---
