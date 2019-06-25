@@ -1,5 +1,9 @@
-# CockroachDB
-## A Brief Overview of Architecture and Behavior
+---?image=assets/img/intro.jpg
+
+@snap[north span-80 text-white]
+## CockroachDB
+### A Brief Overview of Architecture and Behavior
+@snapend
 
 ---
 ## Agenda
