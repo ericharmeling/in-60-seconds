@@ -2,7 +2,7 @@
 
 @snap[midpoint span-100 h2-white h3-white]
 ## CockroachDB
-### A Brief Overview of Architecture and Behavior
+### A Brief Overview
 @snapend
 
 ---
@@ -21,9 +21,8 @@
 
 ---
 
-## Overview
-### What is CockroachDB?
-#### FAQ Answer
+## What is CockroachDB?
+### FAQ Answer
 
 @snap[midpoint span-100]
 "*CockroachDB is a distributed SQL database built on a transactional and strongly-consistent key-value store.*" - [FAQs: What is CockroachDB?](https://www.cockroachlabs.com/docs/v19.1/frequently-asked-questions.html#what-is-cockroachdb)
@@ -31,9 +30,8 @@
 
 ---
 
-## Overview
-### What is CockroachDB?
-#### A "NewSQL" database
+## What is CockroachDB?
+### A "NewSQL" database
 
 @snap[midpoint span-100]
 @ul[spaced]
@@ -44,9 +42,8 @@
 
 ---
 
-## Overview
-### What is CockroachDB?
-#### ACID Guarantee
+## What is CockroachDB?
+### ACID Guarantee
 
 @snap[midpoint span-100]
 @ul[spaced]
@@ -59,9 +56,8 @@
 
 ---
 
-## Overview
-### What is CockroachDB?
-#### Architecture
+## What is CockroachDB?
+### Architecture
 
 @snap[midpoint span-100]
 @ul[spaced]
