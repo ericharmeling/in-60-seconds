@@ -127,11 +127,11 @@ The "keyspace" can be represented as a monolothic, sorted map.
 ## Storage
 ### Key-value store
 
-@snap[midpoint span-100]
+@snap[midpoint text-right span-100]
 ![](assets/img/keyspace2.png)
 @snapend
 
-@snap[]
+@snap[midpoint text-left span-70]
 The keyspace is partitioned into ranges.
 @snapend
 
@@ -140,9 +140,11 @@ The keyspace is partitioned into ranges.
 ## Storage
 ### Key-value store
 
-@snap[midpoint span-100]
+@snapmidpoint text-right span-100]
 ![](assets/img/keyspace3.png)
+@snapend
 
+@snap[midpoint text-left span-70]
 These ranges are replicated and distributed to nodes.
 @snapend
 
