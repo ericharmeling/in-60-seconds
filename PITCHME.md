@@ -8,7 +8,7 @@
 
 @snap[midpoint text-left span-100]
 @ul[spaced text-25]
-- **Overview**
+- **What is CockroachDB?**
 - **How is data stored?**
 - **How is data replicated and distributed?**
 - **How do reads and writes behave in CockroachDB?**
@@ -72,11 +72,15 @@
 ## Storage
 ### How is data stored in CockroachDB?
 
-@snap[midpoint span-100]
+@snap[west span-70]
 @ul[spaced]
 - **SQL interface**: Users access data in CockroachDB as entries in rows and columns of a table, with SQL statements.
 - **Key-value store**: Under the hood, data are stored in partitions ("ranges") of key-value pairs in a sorted key-value store.
 @ulend
+@snapend
+
+@snap[east span-30]
+![](assets/img/keyspace1.png)
 @snapend
 
 ---
