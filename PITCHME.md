@@ -172,7 +172,7 @@
 
 @snap[south span-50]
 ![](assets/img/raft.png)
-@size[.05em]([Ongaro and Ousterhout (2014)](https://www.usenix.org/system/files/conference/atc14/atc14-paper-ongaro.pdf))
+@size[10px](Ongaro and Ousterhout, 2014)
 @snapend
 
 ---
