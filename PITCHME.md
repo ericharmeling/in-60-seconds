@@ -162,7 +162,7 @@
 
 ### Consensus with Raft
 
-@snap[midpoint span-100]
+@snap[west span-50]
 @ul[spaced]
 - CockroachDB uses the Raft consensus algorithm to determine which replica to distribute across a cluster.
 - The replica chosen is the **leader**. The other replicas are the **followers**.
@@ -170,8 +170,9 @@
 @ulend
 @snapend
 
-@snap[south span-50]
-![](assets/img/raft.png) @size[10px](Ongaro and Ousterhout, 2014)
+@snap[east span-50]
+![](assets/img/raft.png)
+[Ongaro and Ousterhout (2014)](https://www.usenix.org/system/files/conference/atc14/atc14-paper-ongaro.pdf)
 @snapend
 
 ---
