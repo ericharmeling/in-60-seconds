@@ -31,12 +31,15 @@
 ## What is CockroachDB?
 ### A distributed, "NewSQL" database
 
-@snap[midpoint span-100]
+@snap[north span-100]
+![](assets/img/crdb.png)
+@snapend
+
+@snap[south span-100]
 @ul[spaced]
 - A SQL client.
 - A key-value store.
-- Some other components that handle distributing, replicating, and storing data in a transactional way that guarantees **ACID** properties.
-- The machines running CockroachDB make up your distributed database.
+- Other components that handle distributing, replicating, and storing data in a transactional way that guarantees **ACID** properties.
 @snapend
 
 ---
