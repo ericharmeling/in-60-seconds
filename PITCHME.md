@@ -230,7 +230,7 @@ Start with example cluster: 3 nodes, 3 tables, 3 ranges, 3 replicas
 ![](assets/img/read2.png)
 @snapend
 
-@snap[south text-left span-100]
+@snap[south span-100]
 @ul[spaced]
 - Query Table 3 from Node 3 (the gateway and leaseholder node).
 @ulend
@@ -256,7 +256,7 @@ Start with example cluster: 3 nodes, 3 tables, 3 ranges, 3 replicas
 
 ### Write Scenario 1: Gateway node different from leaseholder and Raft leader
 
-@snap[midpoint text-05 span-80]
+@snap[midpoint text-05 span-70]
 ![](assets/img/write.png)
 @snapend
 
@@ -274,7 +274,7 @@ Start with example cluster: 3 nodes, 3 tables, 3 ranges, 3 replicas
 
 ### Write Scenario 1: Gateway node different from leaseholder and Raft leader
 
-@snap[midpoint text-05 span-80]
+@snap[midpoint text-05 span-70]
 ![](assets/img/write.png)
 @snapend
 
@@ -292,7 +292,7 @@ Start with example cluster: 3 nodes, 3 tables, 3 ranges, 3 replicas
 
 ### Write Scenario 2: Gateway node same as leaseholder and Raft leader
 
-@snap[midpoint text-05 span-100]
+@snap[midpoint text-05 span-70]
 ![](assets/img/write2.png)
 @snapend
 
