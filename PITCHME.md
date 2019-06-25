@@ -31,7 +31,7 @@
 ## What is CockroachDB?
 ### A distributed, "NewSQL" database
 
-@snap[midpoint span-50]
+@snap[midpoint span-40]
 ![](assets/img/crdb.png)
 @snapend
 
