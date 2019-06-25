@@ -31,7 +31,7 @@
 
 Users interact with a SQL client that interfaces with other components that handle distributing, replicating, and storing data in a transactional way, that guarantees **ACID** properties.
 
-@snap[midpoint span-120]
+@snap[south span-120]
 @ul[spaced text-white]
 - **A**tomic (*Transactions happen or they don't.*)
 - **C**onsistent (*Data is always in a valid state, across all locations.*)
@@ -46,7 +46,6 @@ Users interact with a SQL client that interfaces with other components that hand
 
 ### Architecture
 
-@snap[midpoint span-150]
 @ul[spaced text-white]
 - **SQL** Layer: "*Translate client SQL queries to KV operations.*"
 - **Transactional** Layer: "*Allow atomic changes to multiple KV entries.*"
@@ -54,7 +53,6 @@ Users interact with a SQL client that interfaces with other components that hand
 - **Replication** Layer: "*Consistently and synchronously replicate KV ranges across many nodes. This layer also enables consistent reads via leases.*"
 - **Storage** Layer: "*Write and read KV data on disk.*"
 @ulend
-@snapend
 
 ---
 
