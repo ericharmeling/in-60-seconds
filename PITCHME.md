@@ -4,6 +4,7 @@
 ---
 ## Agenda
 
+@snap[west span-150]
 @ul[spaced text-white]
 - Overview
 - Storage
@@ -12,6 +13,7 @@
 - Fault-tolerance
 - Consistency
 @ulend
+@snapend
 
 ---
 
@@ -21,11 +23,13 @@
 
 "*CockroachDB is a distributed SQL database built on a transactional and strongly-consistent key-value store.*" - [FAQs: What is CockroachDB?](https://www.cockroachlabs.com/docs/v19.1/frequently-asked-questions.html#what-is-cockroachdb)
 
-@snap[midpoint]
+@snap[west span-150]
+@ul
 Users interact with a SQL client that interfaces with other components that handle distributing, replicating, and storing data in a transactional way, that guarantees **ACID** properties.
+@ulend
 @snapend
 
-@snap[south]
+@snap[south-west span-150]
 @ul[spaced text-white]
 - **A**tomic (*Transactions happen or they don't.*)
 - **C**onsistent (*Data is always in a valid state, across all locations.*)
