@@ -4,14 +4,14 @@
 ---
 ## Agenda
 
-@snap[midpoint span-150]
+@snap[midpoint text-10 text-left span-100]
 @ol[spaced text-white]
-1. Overview
-1. Storage
-1. Replication & Distribution
-1. Reading & Writing
-1. Fault-tolerance
-1. Consistency
+- Overview
+- Storage
+- Replication & Distribution
+- Reading & Writing
+- Fault-tolerance
+- Consistency
 @olend
 @snapend
 
@@ -21,7 +21,7 @@
 
 ### What is CockroachDB?
 
-@snap[midpoint span-150]
+@snap[midpoint span-100]
 "*CockroachDB is a distributed SQL database built on a transactional and strongly-consistent key-value store.*" - [FAQs: What is CockroachDB?](https://www.cockroachlabs.com/docs/v19.1/frequently-asked-questions.html#what-is-cockroachdb)
 @snapend
 
@@ -33,7 +33,7 @@
 
 Users interact with a SQL client that interfaces with other components that handle distributing, replicating, and storing data in a transactional way, that guarantees **ACID** properties.
 
-@snap[south span-140]
+@snap[south span-100]
 @ul[spaced text-white]
 - **A**tomic (*Transactions happen or they don't.*)
 - **C**onsistent (*Data is always in a valid state, across all locations.*)
@@ -48,7 +48,7 @@ Users interact with a SQL client that interfaces with other components that hand
 
 ### Architecture
 
-@snap[midpoint span-150]
+@snap[midpoint text-left span-100]
 @ul[spaced text-white]
 - **SQL** Layer: "*Translate client SQL queries to KV operations.*"
 - **Transactional** Layer: "*Allow atomic changes to multiple KV entries.*"
@@ -64,7 +64,7 @@ Users interact with a SQL client that interfaces with other components that hand
 
 ### How is data stored in CockroachDB?
 
-@snap[midpoint span-200]
+@snap[midpoint span-100]
 @ul[spaced text-white]
 - **SQL interface**: Users access data in CockroachDB as entries in rows and columns of a table, with SQL statements.
 - **Key-value store**: Under the hood, data are stored in partitions ("ranges") of key-value pairs in a sorted key-value store.
