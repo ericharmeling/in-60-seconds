@@ -192,8 +192,9 @@
 ---
 ## Reading & Writing
 
-@snap[south span-100]
+@snap[midpoint span-100]
 ![](assets/img/readwrite.png)
+
 
 Start with example cluster: 3 nodes, 3 tables, 3 ranges, 3 replicas
 @snapend
@@ -229,7 +230,7 @@ Start with example cluster: 3 nodes, 3 tables, 3 ranges, 3 replicas
 ![](assets/img/read2.png)
 @snapend
 
-@snap[south span-100]
+@snap[south text-left span-100]
 @ul[spaced]
 - Query Table 3 from Node 3 (the gateway and leaseholder node).
 @ulend
@@ -264,6 +265,21 @@ Start with example cluster: 3 nodes, 3 tables, 3 ranges, 3 replicas
 - Issue write to Table 1 from Node 3 (the gateway node).
 - Leaseholder node for Range 1 is the same as the Raft leader node (Node 1).
 - Write request sent to Node 1.
+@ulend
+@snapend
+
+---
+
+## Reading & Writing
+
+### Write Scenario 1: Gateway node different from leaseholder and Raft leader
+
+@snap[midpoint text-05 span-80]
+![](assets/img/write.png)
+@snapend
+
+@snap[south span-100]
+@ul[spaced text-10]
 - Node 1 writes to Raft log and sends write request to follower nodes to append to Raft logs.
 - The first follower node to receive and append write to Raft log sends acknowledgement response to the Raft leader.
 - The Raft leader notifies the gateway node of successful write.
