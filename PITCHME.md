@@ -19,7 +19,9 @@
 
 ### What is CockroachDB?
 
+@snap[]
 "*CockroachDB is a distributed SQL database built on a transactional and strongly-consistent key-value store.*" - [FAQs: What is CockroachDB?](https://www.cockroachlabs.com/docs/v19.1/frequently-asked-questions.html#what-is-cockroachdb)
+@snapend
 
 @snap[midpoint]
 Users interact with a SQL client that interfaces with other components that handle distributing, replicating, and storing data in a way that guarantees **ACID** properties.
@@ -41,6 +43,7 @@ Users interact with a SQL client that interfaces with other components that hand
 
 ### Architecture
 
+@snap[midpoint]
 @ul[spaced text-white]
 - **SQL** Layer: "*Translate client SQL queries to KV operations.*"
 - **Transactional** Layer: "*Allow atomic changes to multiple KV entries.*"
@@ -48,6 +51,7 @@ Users interact with a SQL client that interfaces with other components that hand
 - **Replication** Layer: "*Consistently and synchronously replicate KV ranges across many nodes. This layer also enables consistent reads via leases.*"
 - **Storage** Layer: "*Write and read KV data on disk.*"
 @ulend
+@snapend
 
 ---
 
