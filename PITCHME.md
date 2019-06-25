@@ -192,7 +192,7 @@
 ---
 ## Reading & Writing
 
-@snap[north span-100]
+@snap[midpoint span-100]
 Start with example cluster: 3 nodes, 3 tables, 3 ranges, 3 replicas
 @snapend
 
@@ -261,13 +261,13 @@ Start with example cluster: 3 nodes, 3 tables, 3 ranges, 3 replicas
 
 ### Write Scenario 1: Gateway node different from leaseholder and Raft leader
 
-@snap[midpoint text-05 span-100]
+@snap[midpoint text-05 span-80]
 ![](assets/img/write.png)
 (*stolen directly from the docs*)
 @snapend
 
 @snap[south span-100]
-@ul[spaced]
+@ul[spaced text-10]
 - Issue write to Table 1 from Node 3 (the gateway node).
 - Leaseholder node for Range 1 is the same as the Raft leader node (Node 1).
 - Write request sent to Node 1.
