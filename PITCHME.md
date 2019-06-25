@@ -114,11 +114,11 @@
 ## Storage
 ### Key-value store
 
-@snap[midpoint text-right span-40]
+@snap[midpoint text-right span-100]
 ![](assets/img/keyspace1.png)
 @snapend
 
-@snap[midpoint text-left span-50]
+@snap[midpoint text-left span-80]
 The "keyspace" can be represented as a monolothic, sorted map.
 @snapend
 
