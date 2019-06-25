@@ -8,10 +8,10 @@
 ---
 ## Agenda
 
-@snap[midpoint text-left span-50]
+@snap[midpoint text-left span-80]
 @ul[spaced text-25]
-- Overview
-- How is data stored?
+- **Overview**
+- **How is data stored?**
 - How is data replicated and distributed?
 - How do reads and writes behave in CockroachDB?
 - How does CockroachDB tolerate failures?
