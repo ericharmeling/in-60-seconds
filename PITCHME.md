@@ -4,15 +4,15 @@
 ---
 ## Agenda
 
-@snap[midpoint text-10 text-left span-100]
-@ol[spaced text-white]
+@snap[midpoint text-12 text-left span-50]
+@ul[spaced text-white]
 - Overview
 - Storage
 - Replication & Distribution
 - Reading & Writing
 - Fault-tolerance
 - Consistency
-@olend
+@ulend
 @snapend
 
 ---
@@ -31,7 +31,9 @@
 
 ### What is CockroachDB?
 
+@snap[midpoint span-100]
 Users interact with a SQL client that interfaces with other components that handle distributing, replicating, and storing data in a transactional way, that guarantees **ACID** properties.
+@snapend
 
 @snap[south span-100]
 @ul[spaced text-white]
@@ -48,7 +50,7 @@ Users interact with a SQL client that interfaces with other components that hand
 
 ### Architecture
 
-@snap[midpoint text-left span-100]
+@snap[midpoint span-80]
 @ul[spaced text-white]
 - **SQL** Layer: "*Translate client SQL queries to KV operations.*"
 - **Transactional** Layer: "*Allow atomic changes to multiple KV entries.*"
@@ -64,7 +66,7 @@ Users interact with a SQL client that interfaces with other components that hand
 
 ### How is data stored in CockroachDB?
 
-@snap[midpoint span-100]
+@snap[midpoint span-80]
 @ul[spaced text-white]
 - **SQL interface**: Users access data in CockroachDB as entries in rows and columns of a table, with SQL statements.
 - **Key-value store**: Under the hood, data are stored in partitions ("ranges") of key-value pairs in a sorted key-value store.
@@ -77,7 +79,7 @@ Users interact with a SQL client that interfaces with other components that hand
 
 ### SQL interface
 
-@snap[midpoint span-120]
+@snap[midpoint span-80]
 @ul[spaced text-white]
 - The user accesses the database of tables through the CockroachDB SQL interface.
 - Primary key values (rows in a primary key column) uniquely identify rows of data.
@@ -91,7 +93,7 @@ Users interact with a SQL client that interfaces with other components that hand
 
 ### Key-value store
 
-@snap[midpoint span-130]
+@snap[midpoint span-80]
 @ul[spaced text-white]
 - CockroachDB stores all data, including "table data", metadata, and indexes, as key-value pairs in a key-value store powered by RocksDB.
 - Each key in the key-value store is a unique ID based on the table ID, the primary key column row value, and the column ID.
@@ -105,7 +107,7 @@ Users interact with a SQL client that interfaces with other components that hand
 
 ### How is data replicated and distributed in CockroachDB?
 
-@snap[midpoint span-150]
+@snap[midpoint span-80]
 @ul[spaced text-white]
 - A **node** is an instance of CockroachDB.
 - A **cluster** is a group of nodes. The nodes in a cluster communicate through requests and responses on a gossip network.
@@ -119,7 +121,7 @@ Users interact with a SQL client that interfaces with other components that hand
 
 ### How is data replicated and distributed in CockroachDB?
 
-@snap[midpoint]
+@snap[midpoint span-80]
 @ul[spaced text-white]
 - Each range is replicated and distributed to a default minimum of three nodes on a cluster.
 - When data in a range grow larger than 64 MiB, the range is split, replicated, and distributed across the cluster.
@@ -133,7 +135,7 @@ Users interact with a SQL client that interfaces with other components that hand
 
 ### Leaseholders
 
-@snap[midpoint]
+@snap[midpoint span-80]
 @ul[spaced text-white]
 - The **gateway node** is the node through which a user accesses the SQL interface.
 - One of the replicas holds a "range lease". This replica manages the read and write requests for its range. This replica is known as the **leaseholder**, and its node is the **leaseholder node**.
@@ -147,7 +149,7 @@ Users interact with a SQL client that interfaces with other components that hand
 
 ### Consensus
 
-@snap[midpoint span-150]
+@snap[west span-45]
 @ul[spaced text-white]
 - CockroachDB uses the Raft consensus algorithm to determine which replica to distribute across a cluster.
 - The replica chosen is the **leader**. The other replicas are the **followers**.
@@ -155,7 +157,7 @@ Users interact with a SQL client that interfaces with other components that hand
 @ulend
 @snapend
 
-@snap[south]
+@snap[east span-45]
 ![](assets/img/raft.png) <sup>[1 Ongaro and Ousterhout (2014)](https://www.usenix.org/system/files/conference/atc14/atc14-paper-ongaro.pdf)</sup>
 @snapend
 
@@ -165,7 +167,7 @@ Users interact with a SQL client that interfaces with other components that hand
 
 ### How do reads work in CockroachDB?
 
-@snap[midpoint]
+@snap[midpoint span-80]
 @ul[spaced text-white]
 - SQL statements are issued from a gateway node.
 - The gateway node locates and sends request to the node with the leaseholder replica.
@@ -176,11 +178,11 @@ Users interact with a SQL client that interfaces with other components that hand
 ---
 ## Reading & Writing
 
-@snap[midpoint]
+@snap[west span-45]
 Start with example cluster: 3 nodes, 3 tables, 3 ranges, 3 replicas
 @snapend
 
-@snap[south]
+@snap[east span-45]
 ![](assets/img/readwrite.png)
 (*stolen directly from the docs*)
 @snapend
