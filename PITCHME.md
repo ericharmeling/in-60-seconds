@@ -279,7 +279,7 @@ These ranges are replicated and distributed to nodes.
 ## Reading & Writing
 ### Write Scenario 1: Gateway node different from leaseholder and Raft leader
 
-@snap[midpoint span-70]
+@snap[midpoint span-55]
 ![](assets/img/write.png)
 @snapend
 
@@ -296,7 +296,7 @@ These ranges are replicated and distributed to nodes.
 ## Reading & Writing
 ### Write Scenario 1: Gateway node different from leaseholder and Raft leader
 
-@snap[midpoint span-70]
+@snap[midpoint span-55]
 ![](assets/img/write.png)
 @snapend
 
@@ -313,7 +313,7 @@ These ranges are replicated and distributed to nodes.
 ## Reading & Writing
 ### Write Scenario 2: Gateway node same as leaseholder and Raft leader
 
-@snap[midpoint span-70]
+@snap[midpoint span-55]
 ![](assets/img/write2.png)
 @snapend
 
@@ -344,7 +344,6 @@ These ranges are replicated and distributed to nodes.
 
 @snap[midpoint text-05 span-100]
 ![](assets/img/fault.png)
-(*stolen directly from training slide*)
 @snapend
 
 @snap[south span-100]
@@ -361,7 +360,6 @@ These ranges are replicated and distributed to nodes.
 
 @snap[midpoint text-05 span-100]
 ![](assets/img/fault2.png)
-(*stolen directly from training slide*)
 @snapend
 
 @snap[south span-100]
@@ -378,7 +376,6 @@ These ranges are replicated and distributed to nodes.
 
 @snap[midpoint text-05 span-100]
 ![](assets/img/repair.png)
-(*stolen directly from training slide*)
 @snapend
 
 @snap[south span-100]
@@ -395,7 +392,6 @@ These ranges are replicated and distributed to nodes.
 
 @snap[midpoint text-05 span-100]
 ![](assets/img/repair2.png)
-(*stolen directly from training slide*)
 @snapend
 
 @snap[south span-100]
@@ -411,20 +407,19 @@ These ranges are replicated and distributed to nodes.
 
 @snap[midpoint span-100]
 @ul[spaced]
-- Recall that transactions are atomic, serializable ("isolated"), and durable (the A, I, and D in ACID).
-- C is the consistency.
+- Recall that transactions in CRDB guarantee that data operations are atomic, strongly serializable ("isolated"), and durable (the **A**, **I**, and **D** in ACID).
+- **C** is the consistency...
 @ulend
 @snapend
 
 ---
 
 ## Consistency
+### How does CockroachDB guarantee consistency?
 
 @snap[midpoint span-100]
 @ul[spaced]
-- Recall that transactions in CRDB guarantee that data operations are atomic, strongly serializable ("isolated"), and durable (the **A**, **I**, and **D** in ACID).
-- **C** is the consistency...
-- Replica of data remain consistent across the distributed database, despite concurrent requests. I.e. "no stale reads."
+- Replicas of data remain consistent across the distributed database, despite concurrent requests. I.e. "no stale reads."
 - CRDB guarantees consistent reads with multi-version concurrency control (MVCC).
 - CRDB guarantees consistent writes with Raft.
 @ulend
