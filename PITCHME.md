@@ -170,7 +170,7 @@
 @ulend
 @snapend
 
-@snap[south text-05 span-50]
+@snap[south-east span-50]
 ![](assets/img/raft.png)
 
 [Ongaro and Ousterhout (2014)](https://www.usenix.org/system/files/conference/atc14/atc14-paper-ongaro.pdf)
