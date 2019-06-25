@@ -19,19 +19,19 @@ background-color : midnight-blue
 # https://gitpitch.com/docs/settings/logo
 #
 logo : assets/img/cockroach_db.png
-logo-position : top-left
+logo-position : bottom-right
 
 #
 # Layout Setting
 # Doc: https://gitpitch.com/docs/settings/layout
 #
-layout : center
+layout : top-left
 
 #
 # Footnote Setting
 # Doc: https://gitpitch.com/docs/settings/footnote
 #
-footnote : "Cockroach DB"
+footnote : 
 
 #
 # Published Setting
