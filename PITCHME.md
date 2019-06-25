@@ -1,6 +1,6 @@
 ---?image=assets/img/intro.png
 
-@snap[north span-80 h2-white h3-white]
+@snap[midpoint span-80 h2-white h3-white]
 ## CockroachDB
 ### A Brief Overview of Architecture and Behavior
 @snapend
@@ -8,14 +8,14 @@
 ---
 ## Agenda
 
-@snap[midpoint text-30 text-left span-50]
-@ul[spaced text-white]
+@snap[midpoint text-left span-50]
+@ul[spaced text-25]
 - Overview
-- Storage
-- Replication & Distribution
-- Reading & Writing
-- Fault-tolerance
-- Consistency
+- How is data stored?
+- How is data replicated and distributed?
+- How do reads and writes behave in CockroachDB?
+- How does CockroachDB tolerate failures?
+- How does CockroachDB guarantee consistency?
 @ulend
 @snapend
 
