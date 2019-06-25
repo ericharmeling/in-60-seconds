@@ -192,15 +192,14 @@
 ---
 ## Reading & Writing
 
-@snap[midpoint span-100]
-Start with example cluster: 3 nodes, 3 tables, 3 ranges, 3 replicas
-@snapend
-
-@snap[south text-05 span-100]
+@snap[south span-100]
 ![](assets/img/readwrite.png)
 
 (*stolen directly from the docs*)
+
+Start with example cluster: 3 nodes, 3 tables, 3 ranges, 3 replicas
 @snapend
+
 
 ---
 
