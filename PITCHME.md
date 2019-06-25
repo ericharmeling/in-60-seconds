@@ -103,7 +103,7 @@
 
 @snap[midpoint span-100]
 @ul[spaced]
-- CockroachDB stores all data, including "table data", metadata, and indexes, as key-value pairs in a key-value store powered by RocksDB.
+- CockroachDB stores all data, including table data, metadata, and indexes, as key-value pairs in a key-value store powered by RocksDB.
 - Each key in the key-value store is a unique ID based on the table ID, the primary key column row value, and the column ID.
 - Each value in the key-value store is the value of the data entry for the corresponding unique key.
 @ulend
@@ -114,18 +114,33 @@
 ## Storage
 ### Key-value store
 
-@snap[north-west text-left span-100]
+@snap[midpoint span-100]
 ![](assets/img/keyspace1.png)
+
+Monolithic "keyspace" representation.
 @snapend
+
+---
+
+## Storage
+### Key-value store
 
 @snap[midpoint span-100]
 ![](assets/img/keyspace2.png)
+
+The keyspace is partitioned into ranges.
 @snapend
 
-@snap[south-west text-right span-100]
+---
+
+## Storage
+### Key-value store
+
+@snap[midpoint span-100]
 ![](assets/img/keyspace3.png)
-@snapend
 
+These ranges are replicated and distributed to nodes.
+@snapend
 
 ---
 
