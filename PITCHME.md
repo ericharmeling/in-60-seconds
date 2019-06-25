@@ -1,4 +1,5 @@
-# CockroachDB: A Brief Overview of Architecture and Behavior
+# CockroachDB
+## A Brief Overview of Architecture and Behavior
 
 ---
 ## Agenda
@@ -16,11 +17,25 @@
 
 ### What is CockroachDB?
 
+@snap[west span-50]
 "*CockroachDB is a distributed SQL database built on a transactional and strongly-consistent key-value store.*" - [FAQs: What is CockroachDB?](https://www.cockroachlabs.com/docs/v19.1/frequently-asked-questions.html#what-is-cockroachdb)
+@snapend
+
+---
+
+## Overview
+
+### What is CockroachDB?
 
 @snap[west span-50]
 Basically, you have a SQL client that interfaces with other components that handle distributing, replicating, and storing data in a way that guarantees **ACID** properties.
 @snapend
+
+---
+
+## Overview
+
+### What is CockroachDB?
 
 @snap[west span-50]
 @ul[spaced text-white]
@@ -46,18 +61,12 @@ Basically, you have a SQL client that interfaces with other components that hand
 
 ### Architecture
 
-
-@snap[west span-50]
-**CockroachDB architecture, summarized:**
-@snapend
-
 @snap[west span-50]
 @ul[spaced text-white]
 - **SQL** Layer: "*Translate client SQL queries to KV operations.*"
 - **Transactional** Layer: "*Allow atomic changes to multiple KV entries.*"
 - **Distribution** Layer: "*Present replicated KV ranges as a single entity.*"
-- **Replication** Layer: "*Consistently and synchronously replicate KV ranges across many
-nodes. This layer also enables consistent reads via leases.*"
+- **Replication** Layer: "*Consistently and synchronously replicate KV ranges across many nodes. This layer also enables consistent reads via leases.*"
 - **Storage** Layer: "*Write and read KV data on disk.*"
 @ulend
 @snapend
@@ -85,10 +94,8 @@ nodes. This layer also enables consistent reads via leases.*"
 @ul[spaced text-white]
 - The user accesses the database of tables through the CockroachDB
 SQL interface.
-- Primary key values (rows in a primary key column) uniquely identify rows of
-data.
-- From the SQL perspective, data is represented as being in one place. That is,
-the user doesn't need to worry about where the data is physically located (although with geo-partitioning, they can).
+- Primary key values (rows in a primary key column) uniquely identify rows of data.
+- From the SQL perspective, data is represented as being in one place. That is, the user doesn't need to worry about where the data is physically located (although with geo-partitioning, they can).
 @ulend
 @snapend
 
