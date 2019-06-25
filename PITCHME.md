@@ -31,7 +31,7 @@
 
 Users interact with a SQL client that interfaces with other components that handle distributing, replicating, and storing data in a transactional way, that guarantees **ACID** properties.
 
-@snap[south span-120]
+@snap[south span-140]
 @ul[spaced text-white]
 - **A**tomic (*Transactions happen or they don't.*)
 - **C**onsistent (*Data is always in a valid state, across all locations.*)
@@ -46,6 +46,7 @@ Users interact with a SQL client that interfaces with other components that hand
 
 ### Architecture
 
+@snap[west span-140]
 @ul[spaced text-white]
 - **SQL** Layer: "*Translate client SQL queries to KV operations.*"
 - **Transactional** Layer: "*Allow atomic changes to multiple KV entries.*"
@@ -53,6 +54,7 @@ Users interact with a SQL client that interfaces with other components that hand
 - **Replication** Layer: "*Consistently and synchronously replicate KV ranges across many nodes. This layer also enables consistent reads via leases.*"
 - **Storage** Layer: "*Write and read KV data on disk.*"
 @ulend
+@snapend
 
 ---
 
@@ -60,7 +62,7 @@ Users interact with a SQL client that interfaces with other components that hand
 
 ### How is data stored in CockroachDB?
 
-@snap[midpoint]
+@snap[midpoint span-150]
 @ul[spaced text-white]
 - **SQL interface**: Users access data in CockroachDB as entries in rows and columns of a table, with SQL statements.
 - **Key-value store**: Under the hood, data are stored in partitions ("ranges") of key-value pairs in a sorted key-value store.
@@ -73,11 +75,11 @@ Users interact with a SQL client that interfaces with other components that hand
 
 ### SQL interface
 
-@snap[midpoint]
+@snap[midpoint span-120]
 @ul[spaced text-white]
 - The user accesses the database of tables through the CockroachDB SQL interface.
 - Primary key values (rows in a primary key column) uniquely identify rows of data.
-- From the SQL perspective, data is represented as being in one place. That is, the user doesn't need to worry about where the data is physically located (although with geo-partitioning, they can).
+- From the SQL perspective, data is represented as being in one place.
 @ulend
 @snapend
 
@@ -87,7 +89,7 @@ Users interact with a SQL client that interfaces with other components that hand
 
 ### Key-value store
 
-@snap[midpoint]
+@snap[midpoint span-130]
 @ul[spaced text-white]
 - CockroachDB stores all data, including "table data", metadata, and indexes, as key-value pairs in a key-value store powered by RocksDB.
 - Each key in the key-value store is a unique ID based on the table ID, the primary key column row value, and the column ID.
@@ -101,7 +103,7 @@ Users interact with a SQL client that interfaces with other components that hand
 
 ### How is data replicated and distributed in CockroachDB?
 
-@snap[midpoint]
+@snap[midpoint span-150]
 @ul[spaced text-white]
 - A **node** is an instance of CockroachDB.
 - A **cluster** is a group of nodes. The nodes in a cluster communicate through requests and responses on a gossip network.
