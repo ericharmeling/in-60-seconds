@@ -1,6 +1,4 @@
----?image=assets/img/intro.png
-
-@snap[midpoint span-100 h2-white h3-white]
+@snap[midpoint span-100]
 ## CockroachDB
 ### A Brief Overview
 @snapend
