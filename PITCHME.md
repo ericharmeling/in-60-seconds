@@ -166,7 +166,7 @@
 @ul[spaced]
 - CockroachDB uses the Raft consensus algorithm to determine which replica to distribute across a cluster.
 - The replica chosen is the **leader**. The other replicas are the **followers**.
-- Timeouts run on each node to determine which replica is the leader. When a leader is unresponsive, a replica becomes a candidate, and the election determines if the candidate becomes a leader.
+- Timeouts run on each node to determine when to hold new elections.
 @ulend
 @snapend
 
