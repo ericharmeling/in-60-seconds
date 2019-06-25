@@ -22,8 +22,8 @@
 ---
 
 ## Overview
-
 ### What is CockroachDB?
+#### FAQ Answer
 
 @snap[midpoint span-100]
 "*CockroachDB is a distributed SQL database built on a transactional and strongly-consistent key-value store.*" - [FAQs: What is CockroachDB?](https://www.cockroachlabs.com/docs/v19.1/frequently-asked-questions.html#what-is-cockroachdb)
@@ -32,14 +32,24 @@
 ---
 
 ## Overview
-
 ### What is CockroachDB?
+#### A "NewSQL" database
 
 @snap[midpoint span-100]
-Users interact with a SQL client that interfaces with other components that handle distributing, replicating, and storing data in a transactional way, that guarantees **ACID** properties.
+@ul[spaced]
+- A SQL client.
+- A key-value store.
+- Some other components that handle distributing, replicating, and storing data in a transactional way that guarantees **ACID** properties.
 @snapend
 
-@snap[south span-100]
+---
+
+## Overview
+### What is CockroachDB?
+#### ACID Guarantee
+
+@snap[midpoint span-100]
+What does ACID mean?
 @ul[spaced text-white]
 - **A**tomic (*Transactions happen or they don't.*)
 - **C**onsistent (*Data is always in a valid state, across all locations.*)
@@ -51,8 +61,8 @@ Users interact with a SQL client that interfaces with other components that hand
 ---
 
 ## Overview
-
-### Architecture
+### What is CockroachDB?
+#### Architecture
 
 @snap[midpoint span-100]
 @ul[spaced text-white]
