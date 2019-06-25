@@ -25,7 +25,7 @@
 
 ### What is CockroachDB?
 
-@snap[north span-100]
+@snap[midpoint span-100]
 "*CockroachDB is a distributed SQL database built on a transactional and strongly-consistent key-value store.*" - [FAQs: What is CockroachDB?](https://www.cockroachlabs.com/docs/v19.1/frequently-asked-questions.html#what-is-cockroachdb)
 @snapend
 
