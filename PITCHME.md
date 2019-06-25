@@ -117,7 +117,8 @@
 @snap[midpoint span-100]
 ![](assets/img/keyspace1.png)
 
-Monolithic "keyspace" representation.
+
+ Monolithic "keyspace" representation.
 @snapend
 
 ---
