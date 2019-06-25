@@ -4,7 +4,7 @@
 ---
 ## Agenda
 
-@snap[west span-150]
+@snap[midpoint span-150]
 @ul[spaced text-white]
 - Overview
 - Storage
@@ -29,11 +29,9 @@
 
 ### What is CockroachDB?
 
-@snap[west span-150]
 Users interact with a SQL client that interfaces with other components that handle distributing, replicating, and storing data in a transactional way, that guarantees **ACID** properties.
-@snapend
 
-@snap[south-west span-150]
+@snap[midpoint span-120]
 @ul[spaced text-white]
 - **A**tomic (*Transactions happen or they don't.*)
 - **C**onsistent (*Data is always in a valid state, across all locations.*)
