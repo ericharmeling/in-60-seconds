@@ -127,7 +127,9 @@ Monolithic "keyspace" representation.
 
 @snap[midpoint span-100]
 ![](assets/img/keyspace2.png)
+@snapend
 
+@snap[]
 The keyspace is partitioned into ranges.
 @snapend
 
