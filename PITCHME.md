@@ -1,6 +1,6 @@
----?image=assets/img/intro.jpg
+---?image=assets/img/intro.png
 
-@snap[north span-80 text-white]
+@snap[north span-80 h2-white h3-white]
 ## CockroachDB
 ### A Brief Overview of Architecture and Behavior
 @snapend
@@ -8,7 +8,7 @@
 ---
 ## Agenda
 
-@snap[midpoint text-18 text-left span-50]
+@snap[midpoint text-30 text-left span-50]
 @ul[spaced text-white]
 - Overview
 - Storage
