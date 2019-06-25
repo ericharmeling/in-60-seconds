@@ -195,11 +195,8 @@
 @snap[south span-100]
 ![](assets/img/readwrite.png)
 
-(*stolen directly from the docs*)
-
 Start with example cluster: 3 nodes, 3 tables, 3 ranges, 3 replicas
 @snapend
-
 
 ---
 
@@ -210,7 +207,6 @@ Start with example cluster: 3 nodes, 3 tables, 3 ranges, 3 replicas
 @snap[midpoint text-05 span-100]
 ![](assets/img/read.png)
 
-(*stolen directly from the docs*)
 @snapend
 
 @snap[south span-100]
@@ -231,7 +227,6 @@ Start with example cluster: 3 nodes, 3 tables, 3 ranges, 3 replicas
 
 @snap[midpoint text-05 span-100]
 ![](assets/img/read2.png)
-(*stolen directly from the docs*)
 @snapend
 
 @snap[south span-100]
@@ -262,7 +257,6 @@ Start with example cluster: 3 nodes, 3 tables, 3 ranges, 3 replicas
 
 @snap[midpoint text-05 span-80]
 ![](assets/img/write.png)
-(*stolen directly from the docs*)
 @snapend
 
 @snap[south span-100]
@@ -284,7 +278,6 @@ Start with example cluster: 3 nodes, 3 tables, 3 ranges, 3 replicas
 
 @snap[midpoint text-05 span-100]
 ![](assets/img/write2.png)
-(*stolen directly from the docs*)
 @snapend
 
 @snap[south span-100]
