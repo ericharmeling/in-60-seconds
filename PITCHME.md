@@ -19,12 +19,8 @@
 
 ### What is CockroachDB?
 
-@snap[north span-75]
+@snap
 "*CockroachDB is a distributed SQL database built on a transactional and strongly-consistent key-value store.*" - [FAQs: What is CockroachDB?](https://www.cockroachlabs.com/docs/v19.1/frequently-asked-questions.html#what-is-cockroachdb)
-@snapend
-
-@snap[south span-25]
-Basically, you have a SQL client that interfaces with other components that handle distributing, replicating, and storing data in a way that guarantees **ACID** properties.
 @snapend
 
 ---
@@ -33,12 +29,18 @@ Basically, you have a SQL client that interfaces with other components that hand
 
 ### What is CockroachDB?
 
+@snap[north]
+Basically, you have a SQL client that interfaces with other components that handle distributing, replicating, and storing data in a way that guarantees **ACID** properties.
+@snapend
+
+@snap[south]
 @ul
 - **A**tomic (*Transactions happen or they don't.*)
 - **C**onsistent (*Data is always in a valid state.*)
 - **I**solated (*Transactions are separate, and strongly serializable.*)
 - **D**urable (*The database is resilient to failures.*)
 @ulend
+@snapend
 
 ---
 
@@ -132,7 +134,7 @@ Basically, you have a SQL client that interfaces with other components that hand
 
 ### Consensus
 
-@snap[north span-80]
+@snap[north]
 @ul
 - CockroachDB uses the Raft consensus algorithm to determine which replica to distribute across a cluster.
 - The replica chosen is the **leader**. The other replicas are the **followers**.
@@ -140,7 +142,7 @@ Basically, you have a SQL client that interfaces with other components that hand
 @ulend
 @snapend
 
-@snap[south span-20]
+@snap[south]
 ![](assets/img/Raft.png) <sup>[1 Ongaro and Ousterhout (2014)](https://www.usenix.org/system/files/conference/atc14/atc14-paper-ongaro.pdf)</sup>
 @snapend
 
@@ -159,12 +161,14 @@ Basically, you have a SQL client that interfaces with other components that hand
 ---
 ## Reading & Writing
 
+@snap[north]
+Start with example cluster: 3 nodes, 3 tables, 3 ranges, 3 replicas
+@snapend
 
+@snap[south]
 ![](assets/img/readwrite.png)
 (*stolen directly from the docs*)
-
-Start with example cluster: 3 nodes, 3 tables, 3 ranges, 3 replicas
-
+@snapend
 
 ---
 
@@ -172,10 +176,12 @@ Start with example cluster: 3 nodes, 3 tables, 3 ranges, 3 replicas
 
 ### Read Scenario 1: Gateway different from leaseholder
 
+@snap[north]
 ![](assets/img/read.png)
 (*stolen directly from the docs*)
+@snapend
 
-@snap[west span-55]
+@snap[south]
 @ul
 - Query Table 3 from Node 2 (the gateway node).
 - The replica of Range 3 is on Node 3.
@@ -191,11 +197,12 @@ Start with example cluster: 3 nodes, 3 tables, 3 ranges, 3 replicas
 
 ### Read Scenario 2: Gateway same as leaseholder
 
+@snap[north]
 ![](assets/img/read2.png)
-
 (*stolen directly from the docs*)
+@snapend
 
-@snap[west span-55]
+@snap[south]
 @ul
 - Query Table 3 from Node 3 (the gateway and leaseholder node).
 @ulend
@@ -207,12 +214,11 @@ Start with example cluster: 3 nodes, 3 tables, 3 ranges, 3 replicas
 
 ### How do writes work in CockroachDB?
 
-@snap[west span-50]
-@ul[spaced text-white]
+@ul
 - SQL statements are issued from a gateway node.
 - The gateway node locates and sends request to the node with the leaseholder replica.
 - Writes are a little more complicated than reads... the leaseholder needs to coordinate with the Raft leader.
-@snapend
+@ulend
 
 ---
 
@@ -220,17 +226,20 @@ Start with example cluster: 3 nodes, 3 tables, 3 ranges, 3 replicas
 
 ### Write Scenario 1: Gateway node different from leaseholder and Raft leader
 
+@snap[north]
 ![](assets/img/write.png)
-
 (*stolen directly from the docs*)
-@snap[west span-50]
-@ul[spaced text-white]
+@snapend
+
+@snap[south]
+@ul
 - Issue write to Table 1 from Node 3 (the gateway node).
 - Leaseholder node for Range 1 is the same as the Raft leader node (Node 1).
 - Write request sent to Node 1.
 - Node 1 writes to Raft log and sends write request to follower nodes to append to Raft logs.
 - The first follower node to receive and append write to Raft log sends acknowledgement response to the Raft leader.
 - The Raft leader notifies the gateway node of successful write.
+@ulend
 @snapend
 
 ---
@@ -239,14 +248,17 @@ Start with example cluster: 3 nodes, 3 tables, 3 ranges, 3 replicas
 
 ### Write Scenario 2: Gateway node same as leaseholder and Raft leader
 
+@snap[north]
 ![](assets/img/write2.png)
-
 (*stolen directly from the docs*)
-@snap[west span-50]
-@ul[spaced text-white]
+@snapend
+
+@snap[south]
+@ul
 - Issue write to Table 1 from Node 1 (the gateway, leaseholder, and Raft leader node).
 - Node 1 writes to Raft log and sends write request to follower nodes to append to Raft logs.
 - The first follower node to receive and append write to Raft log sends acknowledgement response to the Raft leader.
+@ulend
 @snapend
 
 ---
@@ -255,24 +267,27 @@ Start with example cluster: 3 nodes, 3 tables, 3 ranges, 3 replicas
 
 ### How does CockroachDB tolerate failures?
 
-@snap[west span-50]
-@ul[spaced text-white]
+@ul
 - CockroachDB tolerates failures with replication and automated repair.
 - CockroachDB can survive (*n* - 1)/2 failures, where *n* is the replication factor of a piece of data. (e.g. A 5x replication can survive (5-1)/2 = 2 failures.)
-@snapend
+@ulend
 
 ---
 
 ## Failures
 
 ### Scenario 1: Single node fails on 3-node cluster
-![](assets/img/fault.png)
 
+@snap[north]
+![](assets/img/fault.png)
 (*stolen directly from training slide*)
-@snap[west span-50]
-@ul[spaced text-white]
+@snapend
+
+@snap[south]
+@ul
 - Majority (2/3) still possible for consensus.
 - Cluster remains available.
+@ulend
 @snapend
 
 ---
@@ -280,13 +295,17 @@ Start with example cluster: 3 nodes, 3 tables, 3 ranges, 3 replicas
 ## Failures
 
 ### Scenario 2: Two nodes fail on 3-node cluster
-![](assets/img/fault2.png)
 
+@snap[north]
+![](assets/img/fault2.png)
 (*stolen directly from training slide*)
-@snap[west span-50]
-@ul[spaced text-white]
+@snapend
+
+@snap[south]
+@ul
 - Majority not possible for consensus.
 - Cluster unavailable.
+@ulend
 @snapend
 
 ---
@@ -294,13 +313,17 @@ Start with example cluster: 3 nodes, 3 tables, 3 ranges, 3 replicas
 ## Automated Repair
 
 ### Scenario 3: One node fails in 4-node cluster
-![](assets/img/repair.png)
 
+@snap[north]
+![](assets/img/repair.png)
 (*stolen directly from training slide*)
-@snap[west span-50]
-@ul[spaced text-white]
+@snapend
+
+@snap[south]
+@ul
 - Nodes are under-replicated.
 - Cluster waits for Node 2 to come back online.
+@ulend
 @snapend
 
 ---
@@ -308,12 +331,16 @@ Start with example cluster: 3 nodes, 3 tables, 3 ranges, 3 replicas
 ## Automated Repair
 
 ### Scenario 3: One node fails in 4-node cluster
-![](assets/img/repair2.png)
 
+@snap[north]
+![](assets/img/repair2.png)
 (*stolen directly from training slide*)
-@snap[west span-50]
+@snapend
+
+@snap[south]
 @ul
 - After 5 minutes, if the node doesn't come back online, the cluster automatically rebalances.
+@ulend
 @snapend
 
 ---
