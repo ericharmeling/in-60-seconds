@@ -79,7 +79,7 @@
 @ulend
 @snapend
 
-@snap[east span-40]
+@snap[east text-right span-100]
 ![](assets/img/keyspace1.png)
 @snapend
 
