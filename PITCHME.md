@@ -171,8 +171,7 @@
 @snapend
 
 @snap[south span-50]
-![](assets/img/raft.png)
-@size[10px](Ongaro and Ousterhout, 2014)
+![](assets/img/raft.png) @size[10px](Ongaro and Ousterhout, 2014)
 @snapend
 
 ---
