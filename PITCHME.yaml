@@ -25,13 +25,13 @@ logo-position : bottom-right
 # Layout Setting
 # Doc: https://gitpitch.com/docs/settings/layout
 #
-layout : top-left
+layout : top
 
 #
 # Footnote Setting
 # Doc: https://gitpitch.com/docs/settings/footnote
 #
-footnote : 
+footnote :
 
 #
 # Published Setting

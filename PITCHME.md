@@ -4,12 +4,14 @@
 ---
 ## Agenda
 
+@snap[west span-50]
 - **Overview**
 - **Storage**
 - **Replication & Distribution**
 - **Reading & Writing**
 - **Fault-tolerance**
 - **Consistency**
+@snapend
 
 ---
 
