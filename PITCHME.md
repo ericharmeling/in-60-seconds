@@ -170,8 +170,10 @@
 @ulend
 @snapend
 
-@snap[south-west text-05 span-40]
-![](assets/img/raft.png) <sup>[1 Ongaro and Ousterhout (2014)](https://www.usenix.org/system/files/conference/atc14/atc14-paper-ongaro.pdf)</sup>
+@snap[south text-05 span-50]
+![](assets/img/raft.png)
+
+[Ongaro and Ousterhout (2014)](https://www.usenix.org/system/files/conference/atc14/atc14-paper-ongaro.pdf)
 @snapend
 
 ---
