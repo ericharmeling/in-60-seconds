@@ -5,12 +5,12 @@
 ## Agenda
 
 @ul
-- **Overview**
-- **Storage**
-- **Replication & Distribution**
-- **Reading & Writing**
-- **Fault-tolerance**
-- **Consistency**
+- Overview
+- Storage
+- Replication & Distribution
+- Reading & Writing
+- Fault-tolerance
+- Consistency
 @ulend
 
 ---
@@ -19,11 +19,11 @@
 
 ### What is CockroachDB?
 
-@snap[north span-100]
+@snap[north span-75]
 "*CockroachDB is a distributed SQL database built on a transactional and strongly-consistent key-value store.*" - [FAQs: What is CockroachDB?](https://www.cockroachlabs.com/docs/v19.1/frequently-asked-questions.html#what-is-cockroachdb)
 @snapend
 
-@snap[west span-50]
+@snap[south span-25]
 Basically, you have a SQL client that interfaces with other components that handle distributing, replicating, and storing data in a way that guarantees **ACID** properties.
 @snapend
 
@@ -34,21 +34,10 @@ Basically, you have a SQL client that interfaces with other components that hand
 ### What is CockroachDB?
 
 @ul
-- **A**tomic
-
-  *Transactions happen or they don't.*
-
-- **C**onsistent
-
-  *Data is always in a valid state.*
-
-- **I**solated
-
-  *Transactions are separate, and strongly serializable.*
-
-- **D**urable
-
-  *The database is resilient to failures.*
+- **A**tomic (*Transactions happen or they don't.*)
+- **C**onsistent (*Data is always in a valid state.*)
+- **I**solated (*Transactions are separate, and strongly serializable.*)
+- **D**urable (*The database is resilient to failures.*)
 @ulend
 
 ---
@@ -84,8 +73,7 @@ Basically, you have a SQL client that interfaces with other components that hand
 ### SQL interface
 
 @ul
-- The user accesses the database of tables through the CockroachDB
-SQL interface.
+- The user accesses the database of tables through the CockroachDB SQL interface.
 - Primary key values (rows in a primary key column) uniquely identify rows of data.
 - From the SQL perspective, data is represented as being in one place. That is, the user doesn't need to worry about where the data is physically located (although with geo-partitioning, they can).
 @ulend
@@ -98,8 +86,7 @@ SQL interface.
 
 @ul
 - CockroachDB stores all data, including "table data", metadata, and indexes, as key-value pairs in a key-value store powered by RocksDB.
-- Each key in the key-value store is a unique ID based on the table ID, the
-primary key column row value, and the column ID.
+- Each key in the key-value store is a unique ID based on the table ID, the primary key column row value, and the column ID.
 - Each value in the key-value store is the value of the data entry for the corresponding unique key.
 @ulend
 
@@ -172,10 +159,11 @@ primary key column row value, and the column ID.
 ---
 ## Reading & Writing
 
-Start with example cluster: 3 nodes, 3 tables, 3 ranges, 3 replicas
 
 ![](assets/img/readwrite.png)
 (*stolen directly from the docs*)
+
+Start with example cluster: 3 nodes, 3 tables, 3 ranges, 3 replicas
 
 
 ---
@@ -188,7 +176,7 @@ Start with example cluster: 3 nodes, 3 tables, 3 ranges, 3 replicas
 (*stolen directly from the docs*)
 
 @snap[west span-55]
-@ul[spaced text-white]
+@ul
 - Query Table 3 from Node 2 (the gateway node).
 - The replica of Range 3 is on Node 3.
 - Gateway node sends request to leaseholder node.
@@ -208,7 +196,7 @@ Start with example cluster: 3 nodes, 3 tables, 3 ranges, 3 replicas
 (*stolen directly from the docs*)
 
 @snap[west span-55]
-@ul[spaced text-white]
+@ul
 - Query Table 3 from Node 3 (the gateway and leaseholder node).
 @ulend
 @snapend
@@ -324,7 +312,7 @@ Start with example cluster: 3 nodes, 3 tables, 3 ranges, 3 replicas
 
 (*stolen directly from training slide*)
 @snap[west span-50]
-@ul[spaced text-white]
+@ul
 - After 5 minutes, if the node doesn't come back online, the cluster automatically rebalances.
 @snapend
 
@@ -334,10 +322,9 @@ Start with example cluster: 3 nodes, 3 tables, 3 ranges, 3 replicas
 
 ### How does CockroachDB guarantee consistency?
 
-@snap[west span-50]
-@ul[spaced text-white]
+@ul
 - Transactions are atomic, serializable ("isolated"), and durable (the A, I, and D in ACID).
 - C is the consistency.
-@snapend
+@ulend
 
 ---
