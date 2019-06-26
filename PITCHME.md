@@ -159,7 +159,7 @@ This keyspace is partitioned into ranges.
 ![](assets/img/keyspace3.png)
 @snapend
 
-@snap[west text-left span-60]
+@snap[west text-left span-55]
 @ul[spaced]
 - Data in the key-value store is partitioned into **ranges** of up to 64 MiB.
 - Each range is replicated and distributed to a default minimum of three nodes on a cluster.
@@ -174,20 +174,7 @@ This keyspace is partitioned into ranges.
 @snap[midpoint span-100]
 @ul[spaced]
 - When data in a range grow larger than 64 MiB, the range is split, replicated, and distributed across the cluster.
-- It's very easy to scale CockroachDB horizontally. Just add new nodes to a cluster, and it will rebalance loads automatically.
-@ulend
-@snapend
-
----
-
-## Replication & Distribution
-### Leaseholders
-
-@snap[midpoint span-100]
-@ul[spaced]
-- For each range, there is a replica that holds a "range lease". This replica is known as the **leaseholder** (and its node is the **leaseholder node**). This replica manages the read and write requests for its range.
-- When a user submits a SQL statement, the gateway node identifies the leaseholder for the range of interest, and sends the read or write request to the leaseholder.
-- We will discuss reads and writes in more detail later...
+- It's easy to scale CockroachDB horizontally. Just add new nodes to a cluster, and it will rebalance loads automatically.
 @ulend
 @snapend
 
@@ -220,6 +207,18 @@ This keyspace is partitioned into ranges.
 @snap[east span-50]
 ![](assets/img/raft.png)
 [Ongaro and Ousterhout (2014)](https://www.usenix.org/system/files/conference/atc14/atc14-paper-ongaro.pdf)
+@snapend
+
+---
+
+## Replication & Distribution
+### Leaseholders
+
+@snap[midpoint span-100]
+@ul[spaced]
+- For each range, there is a replica that holds a **range lease**. This replica is known as the **leaseholder**. This replica manages the read and write requests for its range.
+- When a user submits a SQL statement, the gateway node identifies the leaseholder for the range of interest, and sends the read or write request to the leaseholder.
+@ulend
 @snapend
 
 ---
