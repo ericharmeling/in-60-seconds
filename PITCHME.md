@@ -39,7 +39,7 @@
 @ul[spaced]
 - A SQL client.
 - A key-value store.
-- Other components that handle distributing, replicating, and storing data in a transactional way that guarantees **ACID** properties.
+- Other components that handle distributing, replicating, and storing data in a way that guarantees **ACID** properties.
 @snapend
 
 ---
@@ -49,10 +49,10 @@
 
 @snap[midpoint span-100]
 @ul[spaced]
-- **A**tomic (*Transactions happen or they don't.*)
-- **C**onsistent (*Data is always in a valid state, across all locations.*)
-- **I**solated (*Transactions are separate, and strongly serializable.*)
-- **D**urable (*The data persists, even with failures.*)
+- **A**tomicity (*Transactions happen or they don't.*)
+- **C**onsistency (*Data is always in a valid state, across all locations.*)
+- **I**solatation (*Transactions are separate, and strongly serializable.*)
+- **D**urability (*The data is permanently and durably recorded.*)
 @ulend
 @snapend
 
@@ -78,21 +78,8 @@
 
 @snap[west span-100]
 @ul[spaced]
-- **SQL interface**: Users access data in CockroachDB as entries in rows and columns of a table, with SQL statements.
-- **Key-value store**: Under the hood, data are stored in partitions ("ranges") of key-value pairs in a sorted key-value store.
-@ulend
-@snapend
-
----
-
-## Storage
-### SQL interface
-
-@snap[midpoint span-100]
-@ul[spaced]
-- The user accesses the database of tables through the CockroachDB SQL interface.
-- Primary key values (rows in a primary key column) uniquely identify rows of data.
-- From the SQL perspective, data is represented as being in one place.
+- **SQL interface**: Users access data in CockroachDB as entries in rows and columns of a table, with SQL statements. From the SQL perspective, data is represented as being in one place.
+- **Key-value store**: Under the hood, data are stored in partitions ("ranges") of key-value pairs that make up a key-value store. The ranges are replicated and distributed to multiple machines.
 @ulend
 @snapend
 
@@ -103,9 +90,10 @@
 
 @snap[midpoint span-100]
 @ul[spaced]
-- CockroachDB stores all data, including table data, metadata, and indexes, as key-value pairs in a key-value store powered by RocksDB.
-- Each key in the key-value store is a unique ID based on the table ID, the primary key column row value, and the column ID.
+- CockroachDB stores all data, including table data, indexes, and metadata in a key-value store (RocksDB).
+- For table data, each key in the key-value store is a unique ID based on the table ID, the primary key column row value, and the column ID.
 - Each value in the key-value store is the value of the data entry for the corresponding unique key.
+- Indexes and metadata are stored a little differently...
 @ulend
 @snapend
 
@@ -420,7 +408,7 @@ These ranges are replicated and distributed to nodes.
 @snap[midpoint span-100]
 @ul[spaced]
 - Replicas of data remain consistent across the distributed database, despite concurrent requests. I.e. "no stale reads."
-- CRDB guarantees consistent reads with multi-version concurrency control (MVCC).
+- CRDB guarantees consistent reads with multi-version concurrency control (MVCC). *"New writes do not overwrite old values, but rather create a new version with a later timestamp."*
 - CRDB guarantees consistent writes with Raft.
 @ulend
 @snapend
