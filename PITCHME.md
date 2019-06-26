@@ -168,19 +168,6 @@ This keyspace is partitioned into ranges.
 
 ---
 
-## Storage
-### Key-value store
-
-@snap[east text-right span-100]
-![](assets/img/keyspace3.png)
-@snapend
-
-@snap[west text-left span-60]
-These ranges are replicated and distributed to nodes.
-@snapend
-
----
-
 ## Agenda
 
 @snap[midpoint text-left span-100]
@@ -192,6 +179,19 @@ These ranges are replicated and distributed to nodes.
 - How does CockroachDB tolerate failures?
 - How does CockroachDB guarantee consistency?
 @ulend
+@snapend
+
+---
+
+## Replication & Distribution
+### How is data replicated and distributed in CockroachDB?
+
+@snap[east text-right span-100]
+![](assets/img/keyspace3.png)
+@snapend
+
+@snap[west text-left span-60]
+These ranges are replicated and distributed to nodes.
 @snapend
 
 ---
