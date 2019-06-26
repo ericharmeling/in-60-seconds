@@ -160,8 +160,10 @@ This keyspace is partitioned into ranges.
 @snapend
 
 @snap[west text-left span-60]
+@ul[spaced]
 - Data in the key-value store is partitioned into **ranges** of up to 64 MiB.
 - Each range is replicated and distributed to a default minimum of three nodes on a cluster.
+@ulend
 @snapend
 
 ---
