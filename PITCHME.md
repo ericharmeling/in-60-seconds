@@ -21,12 +21,14 @@
 ## Agenda
 
 @snap[midpoint text-left span-100]
+@ul[spaced text-25]
 - **What is CockroachDB?**
 - How is data stored?
 - How is data replicated and distributed?
 - How do reads and writes behave in CockroachDB?
 - How does CockroachDB tolerate failures?
 - How does CockroachDB guarantee consistency?
+@ulend
 @snapend
 
 ---
