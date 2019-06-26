@@ -438,8 +438,8 @@ These ranges are replicated and distributed to nodes.
 
 @snap[midpoint span-100]
 @ul[spaced]
-- Replicas of data remain consistent across the distributed database, despite concurrent requests. I.e. "no stale reads."
-- CRDB guarantees consistent reads with multi-version concurrency control (MVCC). *"New writes do not overwrite old values, but rather create a new version with a later timestamp."*
+- Replicas of data remain consistent across the distributed database, despite concurrent requests (i.e. no "stale reads").
+- CRDB guarantees consistent reads with multi-version concurrency control (MVCC). New writes do not overwrite old values. Instead, they create a new version with a later timestamp.
 - CRDB guarantees consistent writes with Raft.
 @ulend
 @snapend
