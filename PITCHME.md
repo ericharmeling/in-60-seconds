@@ -52,7 +52,7 @@
 ---
 
 ## What is CockroachDB?
-### An instance of CockroachDB:
+### What's in an instance of CRDB?
 
 @snap[midpoint span-100]
 @ul[spaced]
