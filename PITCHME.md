@@ -13,7 +13,6 @@
 - **How is data replicated and distributed?**
 - **How do reads and writes behave in CockroachDB?**
 - **How does CockroachDB tolerate failures?**
-- **How does CockroachDB guarantee consistency?**
 @ulend
 @snapend
 
@@ -27,7 +26,6 @@
 - How is data replicated and distributed?
 - How do reads and writes behave in CockroachDB?
 - How does CockroachDB tolerate failures?
-- How does CockroachDB guarantee consistency?
 @ulend
 @snapend
 
@@ -110,7 +108,6 @@
 - How is data replicated and distributed?
 - How do reads and writes behave in CockroachDB?
 - How does CockroachDB tolerate failures?
-- How does CockroachDB guarantee consistency?
 @ulend
 @snapend
 
@@ -177,7 +174,6 @@ This keyspace is partitioned into ranges.
 - **How is data replicated and distributed?**
 - How do reads and writes behave in CockroachDB?
 - How does CockroachDB tolerate failures?
-- How does CockroachDB guarantee consistency?
 @ulend
 @snapend
 
@@ -263,7 +259,6 @@ These ranges are replicated and distributed to nodes.
 - How is data replicated and distributed?
 - **How do reads and writes behave in CockroachDB?**
 - How does CockroachDB tolerate failures?
-- How does CockroachDB guarantee consistency?
 @ulend
 @snapend
 
@@ -413,7 +408,6 @@ These ranges are replicated and distributed to nodes.
 - How is data replicated and distributed?
 - How do reads and writes behave in CockroachDB?
 - **How does CockroachDB tolerate failures?**
-- How does CockroachDB guarantee consistency?
 @ulend
 @snapend
 
@@ -489,46 +483,6 @@ These ranges are replicated and distributed to nodes.
 @snap[south span-100]
 @ul[spaced]
 - After 5 minutes, if the node doesn't come back online, the cluster automatically rebalances.
-@ulend
-@snapend
-
----
-
-## Agenda
-
-@snap[midpoint text-left span-100]
-@ul[spaced text-25]
-- What is CockroachDB?
-- How is data stored?
-- How is data replicated and distributed?
-- How do reads and writes behave in CockroachDB?
-- How does CockroachDB tolerate failures?
-- **How does CockroachDB guarantee consistency?**
-@ulend
-@snapend
-
----
-
-## Consistency
-### How does CockroachDB guarantee consistency?
-
-@snap[midpoint span-100]
-@ul[spaced]
-- Recall that transactions in CRDB guarantee that data operations are atomic, strongly serializable ("isolated"), and durable (the **A**, **I**, and **D** in ACID).
-- **C** is the consistency...
-@ulend
-@snapend
-
----
-
-## Consistency
-### How does CockroachDB guarantee consistency?
-
-@snap[midpoint span-100]
-@ul[spaced]
-- Replicas of data remain consistent across the distributed database, despite concurrent requests (i.e. no "stale reads").
-- CRDB guarantees consistent reads with multi-version concurrency control (MVCC). New writes do not overwrite old values. Instead, they create a new version with a later timestamp.
-- CRDB guarantees consistent writes with Raft.
 @ulend
 @snapend
 
