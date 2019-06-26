@@ -37,9 +37,8 @@
 
 @snap[south span-100]
 @ul[spaced]
-- A SQL client.
-- A key-value store.
-- Other components that handle distributing, replicating, and storing data in a way that guarantees **ACID** properties.
+- A **node** is an instance of CockroachDB.
+- A **cluster** is a group of connected nodes that acts as a single application.
 @snapend
 
 ---
@@ -53,8 +52,9 @@
 
 @snap[south span-100]
 @ul[spaced]
-- A **node** is an instance of CockroachDB.
-- A **cluster** is a group of connected nodes that acts as a single application.
+- A SQL client.
+- A key-value store.
+- Other components that handle distributing, replicating, and storing data in a way that guarantees **ACID** properties.
 @snapend
 
 ---
@@ -159,16 +159,6 @@ These ranges are replicated and distributed to nodes.
 @snap[midpoint span-100]
 @ul[spaced]
 - Data in the key-value store is partitioned into **ranges** of up to 64 MiB.
-@ulend
-@snapend
-
----
-
-## Replication & Distribution
-### How is data replicated and distributed in CockroachDB?
-
-@snap[midpoint span-100]
-@ul[spaced]
 - Each range is replicated and distributed to a default minimum of three nodes on a cluster.
 - When data in a range grow larger than 64 MiB, the range is split, replicated, and distributed across the cluster.
 - It's very easy to scale CockroachDB horizontally. Just add new nodes to a cluster, and it will rebalance loads automatically.
@@ -182,7 +172,7 @@ These ranges are replicated and distributed to nodes.
 
 @snap[midpoint span-100]
 @ul[spaced]
-- For each range, there is a replica that holds a "range lease". This replica is known as the **leaseholder** (its node is the **leaseholder node**). This replica manages the read and write requests for its range.
+- For each range, there is a replica that holds a "range lease". This replica is known as the **leaseholder** (and its node is the **leaseholder node**). This replica manages the read and write requests for its range.
 - When a user submits a SQL statement, the gateway node identifies the leaseholder for the range of interest, and sends the read or write request to the leaseholder.
 - We will discuss reads and writes in more detail later...
 @ulend
@@ -193,24 +183,24 @@ These ranges are replicated and distributed to nodes.
 ## Replication & Distribution
 ### Consensus with Raft
 
-@snap[west span-50]
+@snap[midpoint span-100]
 @ul[spaced]
 - CockroachDB uses the Raft consensus algorithm to guarantee that data is consistent across replicas.
 - Raft groups replicas of the same range into a **Raft group**.
 - Each group has a single **leader**. All other replicas are **followers**. The Raft leader is usually also the leaseholder.
-- Each group also has a **Raft log**, which contains a time-ordered log of writes to its range that the majority of replicas have agreed on.
+- Each replica holds a **Raft log**, which contains a time-ordered log of writes to its range that the majority of replicas have agreed on.
 @ulend
 @snapend
 
 ---
 
 ## Replication & Distribution
-### Consensus with Raft
+### Raft Elections
 
 @snap[west span-50]
 @ul[spaced]
 - The leader periodically distributes the latest log of writes to the followers in the group.
-- If a follower does not hear from the leader within a time, it starts a new election.
+- If a follower does not hear from the leader within a time period, that follower starts a new election.
 @ulend
 @snapend
 
@@ -228,7 +218,8 @@ These ranges are replicated and distributed to nodes.
 @ul[spaced]
 - SQL statements are issued from a gateway node.
 - The gateway node locates node with the leaseholder replica.
-- All read and write requests go through the leaseholder, it contains the latest, verified replica. The leaseholder simply sends back the requested data to the gateway node.
+- All read and write requests go through the leaseholder, so it contains the latest, verified replica.
+- For reads, the leaseholder simply sends back the requested data to the gateway node.
 @ulend
 @snapend
 
@@ -243,7 +234,7 @@ These ranges are replicated and distributed to nodes.
 ---
 
 ## Reading & Writing
-### Read Scenario 1: Gateway different from leaseholder
+#### Read Scenario 1: Gateway different from leaseholder
 
 @snap[midpoint text-05 span-100]
 ![](assets/img/read.png)
@@ -263,7 +254,7 @@ These ranges are replicated and distributed to nodes.
 ---
 
 ## Reading & Writing
-### Read Scenario 2: Gateway same as leaseholder
+#### Read Scenario 2: Gateway same as leaseholder
 
 @snap[midpoint span-100]
 ![](assets/img/read2.png)
@@ -291,7 +282,7 @@ These ranges are replicated and distributed to nodes.
 ---
 
 ## Reading & Writing
-### Write Scenario 1: Gateway node different from leaseholder and Raft leader
+#### Write Scenario 1: Gateway node different from leaseholder/leader
 
 @snap[midpoint span-55]
 ![](assets/img/write.png)
@@ -299,7 +290,7 @@ These ranges are replicated and distributed to nodes.
 
 @snap[south span-100]
 @ul[spaced text-10]
-- Issue write to Table 1 from Node 3 (the gateway node).
+- Issue write from Node 3 to Table 1.
 - Leaseholder node for Range 1 is the same as the Raft leader node (Node 1).
 - Write request sent to Node 1.
 @ulend
@@ -308,7 +299,7 @@ These ranges are replicated and distributed to nodes.
 ---
 
 ## Reading & Writing
-### Write Scenario 1: Gateway node different from leaseholder and Raft leader
+#### Write Scenario 1: Gateway node different from leaseholder/leader
 
 @snap[midpoint span-55]
 ![](assets/img/write.png)
@@ -325,7 +316,7 @@ These ranges are replicated and distributed to nodes.
 ---
 
 ## Reading & Writing
-### Write Scenario 2: Gateway node same as leaseholder and Raft leader
+#### Write Scenario 2: Gateway node same as leaseholder/leader
 
 @snap[midpoint span-55]
 ![](assets/img/write2.png)
@@ -333,8 +324,22 @@ These ranges are replicated and distributed to nodes.
 
 @snap[south span-100]
 @ul[spaced]
-- Issue write to Table 1 from Node 1 (the gateway, leaseholder, and Raft leader node).
+- Issue write from Node 1 to Table 1 (the gateway, leaseholder, and Raft leader node).
 - Node 1 writes to Raft log and sends write request to follower nodes to append to Raft logs.
+@ulend
+@snapend
+
+---
+
+## Reading & Writing
+#### Write Scenario 2: Gateway node same as leaseholder/leader
+
+@snap[midpoint span-55]
+![](assets/img/write2.png)
+@snapend
+
+@snap[south span-100]
+@ul[spaced]
 - The first follower node to receive and append write to Raft log sends acknowledgement response to the Raft leader.
 @ulend
 @snapend
@@ -347,7 +352,7 @@ These ranges are replicated and distributed to nodes.
 @snap[midpoint span-100]
 @ul[spaced]
 - CockroachDB tolerates failures with replication and automated repair.
-- CockroachDB can survive (*n* - 1)/2 failures, where *n* is the replication factor of a piece of data. (e.g. A 5x replication can survive (5-1)/2 = 2 failures.)
+- CockroachDB can survive **(*n* - 1)/2** failures, where *n* is the replication factor of a piece of data. (e.g. A 5x replication can survive **(5-1)/2 = 2** failures.)
 @ulend
 @snapend
 
@@ -394,7 +399,7 @@ These ranges are replicated and distributed to nodes.
 
 @snap[south span-100]
 @ul[spaced]
-- Nodes are under-replicated.
+- Ranges are under-replicated.
 - Cluster waits for Node 2 to come back online.
 @ulend
 @snapend
