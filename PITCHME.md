@@ -134,8 +134,8 @@
 @snap[midpoint span-100]
 @ul[spaced]
 - CockroachDB stores data, including table data, indexes, and metadata in a key-value store (RocksDB).
-- For table data, each key in the key-value store is a unique ID based on the table ID, and the primary key.
-- Each value in the key-value store is the value of the row for the corresponding unique key.
+- For table data, each key in the key-value store is a unique string based on the table ID and the primary key.
+- Each value in the key-value store contains the row for values of the corresponding unique key.
 - Indexes and metadata are stored a little differently... but still as key-value pairs in the key-value store.
 @ulend
 @snapend
