@@ -45,6 +45,21 @@
 ---
 
 ## What is CockroachDB?
+### A distributed, "NewSQL" database
+
+@snap[midpoint span-40]
+![](assets/img/crdb.png)
+@snapend
+
+@snap[south span-100]
+@ul[spaced]
+- A **node** is an instance of CockroachDB.
+- A **cluster** is a group of connected nodes that acts as a single application.
+@snapend
+
+---
+
+## What is CockroachDB?
 ### ACID Guarantee
 
 @snap[midpoint span-100]
@@ -78,7 +93,7 @@
 
 @snap[west span-100]
 @ul[spaced]
-- **SQL interface**: Users access data in CockroachDB as entries in rows and columns of a table, with SQL statements. From the SQL perspective, data is represented as being in one place. The **gateway node** is the node through which a user accesses the SQL interface.
+- **SQL interface**: Users access data in CockroachDB as entries in rows and columns of a table, with SQL statements. From the SQL perspective, data is represented as being in one place. The machine through which a user accesses the SQL interface is referred to the **gateway node**.
 - **Key-value store**: Under the hood, data are stored in partitions ("ranges") up to 64 MiB in size of key-value pairs in a key-value store. These ranges are replicated and distributed to multiple machines.
 @ulend
 @snapend
@@ -143,8 +158,6 @@ These ranges are replicated and distributed to nodes.
 
 @snap[midpoint span-100]
 @ul[spaced]
-- A **node** is an instance of CockroachDB.
-- A **cluster** is a group of connected nodes. The nodes in a cluster communicate through a gossip network.
 - Data in the key-value store is partitioned into **ranges** of up to 64 MiB.
 @ulend
 @snapend
