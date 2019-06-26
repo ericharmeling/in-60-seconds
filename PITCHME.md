@@ -18,6 +18,20 @@
 @snapend
 
 ---
+## Agenda
+
+@snap[midpoint text-left span-100]
+@ul[spaced text-25]
+- **What is CockroachDB?**
+- How is data stored?
+- How is data replicated and distributed?
+- How do reads and writes behave in CockroachDB?
+- How does CockroachDB tolerate failures?
+- How does CockroachDB guarantee consistency?
+@ulend
+@snapend
+
+---
 
 ## What is CockroachDB?
 ### FAQ Answer
@@ -54,7 +68,7 @@
 @ul[spaced]
 - A SQL client.
 - A key-value store.
-- Other components that handle distributing, replicating, and storing data in a way that guarantees **ACID** properties.
+- Some other components that handle distributing, replicating, and storing data in a way that guarantees **ACID** properties.
 @snapend
 
 ---
@@ -87,6 +101,20 @@
 @snapend
 
 ---
+## Agenda
+
+@snap[midpoint text-left span-100]
+@ul[spaced text-25]
+- What is CockroachDB?
+- **How is data stored?**
+- How is data replicated and distributed?
+- How do reads and writes behave in CockroachDB?
+- How does CockroachDB tolerate failures?
+- How does CockroachDB guarantee consistency?
+@ulend
+@snapend
+
+---
 
 ## Storage
 ### How is data stored in CockroachDB?
@@ -94,7 +122,7 @@
 @snap[west span-100]
 @ul[spaced]
 - **SQL interface**: Users access data in CockroachDB as entries in rows and columns of a table, with SQL statements. From the SQL perspective, data is represented as being in one place. The machine through which a user accesses the SQL interface is referred to the **gateway node**.
-- **Key-value store**: Under the hood, data are stored in partitions ("ranges") up to 64 MiB in size of key-value pairs in a key-value store. These ranges are replicated and distributed to multiple machines.
+- **Key-value store**: Under the hood, data are stored in partitions ("ranges") up to 64 MiB in size of key-value pairs in a key-value store. These ranges are replicated and distributed to multiple nodes.
 @ulend
 @snapend
 
@@ -105,10 +133,10 @@
 
 @snap[midpoint span-100]
 @ul[spaced]
-- CockroachDB stores all data, including table data, indexes, and metadata in a key-value store (RocksDB).
-- For table data, each key in the key-value store is a unique ID based on the table ID, the primary key column row value, and the column ID.
-- Each value in the key-value store is the value of the data entry for the corresponding unique key.
-- Indexes and metadata are stored a little differently...
+- CockroachDB stores data, including table data, indexes, and metadata in a key-value store (RocksDB).
+- For table data, each key in the key-value store is a unique ID based on the table ID, and the primary key.
+- Each value in the key-value store is the value of the row for the corresponding unique key.
+- Indexes and metadata are stored a little differently... but still as key-value pairs in the key-value store.
 @ulend
 @snapend
 
@@ -153,6 +181,21 @@ These ranges are replicated and distributed to nodes.
 
 ---
 
+## Agenda
+
+@snap[midpoint text-left span-100]
+@ul[spaced text-25]
+- What is CockroachDB?
+- How is data stored?
+- **How is data replicated and distributed?**
+- How do reads and writes behave in CockroachDB?
+- How does CockroachDB tolerate failures?
+- How does CockroachDB guarantee consistency?
+@ulend
+@snapend
+
+---
+
 ## Replication & Distribution
 ### How is data replicated and distributed in CockroachDB?
 
@@ -186,7 +229,7 @@ These ranges are replicated and distributed to nodes.
 @snap[midpoint span-100]
 @ul[spaced]
 - CockroachDB uses the Raft consensus algorithm to guarantee that data is consistent across replicas.
-- Raft groups replicas of the same range into a **Raft group**.
+- Raft groups replicas of the same range into a **Raft group**. There is one Raft group per range.
 - Each group has a single **leader**. All other replicas are **followers**. The Raft leader is usually also the leaseholder.
 - Each replica holds a **Raft log**, which contains a time-ordered log of writes to its range that the majority of replicas have agreed on.
 @ulend
@@ -207,6 +250,21 @@ These ranges are replicated and distributed to nodes.
 @snap[east span-50]
 ![](assets/img/raft.png)
 [Ongaro and Ousterhout (2014)](https://www.usenix.org/system/files/conference/atc14/atc14-paper-ongaro.pdf)
+@snapend
+
+---
+
+## Agenda
+
+@snap[midpoint text-left span-100]
+@ul[spaced text-25]
+- What is CockroachDB?
+- How is data stored?
+- How is data replicated and distributed?
+- **How do reads and writes behave in CockroachDB?**
+- How does CockroachDB tolerate failures?
+- How does CockroachDB guarantee consistency?
+@ulend
 @snapend
 
 ---
@@ -346,6 +404,21 @@ These ranges are replicated and distributed to nodes.
 
 ---
 
+## Agenda
+
+@snap[midpoint text-left span-100]
+@ul[spaced text-25]
+- What is CockroachDB?
+- How is data stored?
+- How is data replicated and distributed?
+- How do reads and writes behave in CockroachDB?
+- **How does CockroachDB tolerate failures?**
+- How does CockroachDB guarantee consistency?
+@ulend
+@snapend
+
+---
+
 ## Fault-tolerance
 ### How does CockroachDB tolerate failures?
 
@@ -416,6 +489,21 @@ These ranges are replicated and distributed to nodes.
 @snap[south span-100]
 @ul[spaced]
 - After 5 minutes, if the node doesn't come back online, the cluster automatically rebalances.
+@ulend
+@snapend
+
+---
+
+## Agenda
+
+@snap[midpoint text-left span-100]
+@ul[spaced text-25]
+- What is CockroachDB?
+- How is data stored?
+- How is data replicated and distributed?
+- How do reads and writes behave in CockroachDB?
+- How does CockroachDB tolerate failures?
+- **How does CockroachDB guarantee consistency?**
 @ulend
 @snapend
 
