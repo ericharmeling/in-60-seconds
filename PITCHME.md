@@ -58,7 +58,7 @@
 @ul[spaced]
 - A SQL client.
 - A key-value store.
-- Some other components that handle distributing, replicating, and storing data in a way that guarantees **ACID** properties.
+- Some other components in between that handle distributing, replicating, and storing data in a way that guarantees **ACID** properties.
 @snapend
 
 ---
@@ -93,8 +93,8 @@
 
 @snap[west span-100]
 @ul[spaced]
-- **SQL interface**: Users access data in CockroachDB as entries in rows and columns of a table, with SQL statements. From the SQL perspective, data is represented as being in one place. The machine through which a user accesses the SQL interface is referred to the **gateway node**.
-- **Key-value store**: Under the hood, data are stored in partitions ("ranges") up to 64 MiB in size of key-value pairs in a key-value store. These ranges are replicated and distributed to multiple nodes.
+- **SQL interface**: Users access data in CockroachDB as entries in rows and columns of a table, with SQL statements. From the SQL perspective, data is represented as being in one place.
+- **Key-value store**: Under the hood, KV data are stored in partitions ("ranges") up to 64 MiB.
 @ulend
 @snapend
 
@@ -105,9 +105,9 @@
 
 @snap[midpoint span-100]
 @ul[spaced]
-- CockroachDB stores data, including table data, indexes, and metadata in a key-value store (RocksDB).
-- For table data, each key in the key-value store is a unique string based on the table ID and the primary key.
-- Each value in the key-value store contains the row for values of the corresponding unique key.
+- CockroachDB stores data, including rows of table data, indexes, and metadata in a key-value store (RocksDB).
+- For rows of table data, each key in the key-value store is a unique string that is based on the table ID and that row's primary key value.
+- Each value in the key-value store contains the row of values that corresponds to the unique key.
 - Indexes and metadata are stored a little differently... but still as key-value pairs in the key-value store.
 @ulend
 @snapend
@@ -160,7 +160,8 @@ This keyspace is partitioned into ranges.
 @snapend
 
 @snap[west text-left span-60]
-These ranges are replicated and distributed to nodes.
+- Data in the key-value store is partitioned into **ranges** of up to 64 MiB.
+- Each range is replicated and distributed to a default minimum of three nodes on a cluster.
 @snapend
 
 ---
@@ -170,8 +171,6 @@ These ranges are replicated and distributed to nodes.
 
 @snap[midpoint span-100]
 @ul[spaced]
-- Data in the key-value store is partitioned into **ranges** of up to 64 MiB.
-- Each range is replicated and distributed to a default minimum of three nodes on a cluster.
 - When data in a range grow larger than 64 MiB, the range is split, replicated, and distributed across the cluster.
 - It's very easy to scale CockroachDB horizontally. Just add new nodes to a cluster, and it will rebalance loads automatically.
 @ulend
