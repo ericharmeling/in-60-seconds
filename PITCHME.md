@@ -37,7 +37,7 @@
 ---
 
 ## What is CockroachDB?
-### A distributed, "NewSQL" database
+### A distributed database
 
 @snap[midpoint span-40]
 ![](assets/img/crdb.png)
@@ -45,20 +45,16 @@
 
 @snap[south span-100]
 @ul[spaced]
-- A **node** is an instance of CockroachDB.
-- A **cluster** is a group of connected nodes that acts as a single application.
+- A **node** is a machine running CockroachDB.
+- A **cluster** is a group of connected nodes that acts as a single, logical application.
 @snapend
 
 ---
 
 ## What is CockroachDB?
-### A distributed, "NewSQL" database
+### An instance of CockroachDB:
 
-@snap[midpoint span-40]
-![](assets/img/crdb.png)
-@snapend
-
-@snap[south span-100]
+@snap[midpoint span-100]
 @ul[spaced]
 - A SQL client.
 - A key-value store.
