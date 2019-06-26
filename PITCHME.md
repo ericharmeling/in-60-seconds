@@ -187,7 +187,7 @@ This keyspace is partitioned into ranges.
 @ul[spaced]
 - CockroachDB uses the Raft consensus algorithm to guarantee that data is consistent across replicas.
 - Raft groups replicas of the same range into a **Raft group**. There is one Raft group per range.
-- Each group has a single **leader**. All other replicas are **followers**. The Raft leader is usually also the leaseholder.
+- Each group has a single **leader**. All other replicas are **followers**.
 - Each replica holds a **Raft log**, which contains a time-ordered log of writes to its range that the majority of replicas have agreed on.
 @ulend
 @snapend
@@ -216,7 +216,7 @@ This keyspace is partitioned into ranges.
 
 @snap[midpoint span-100]
 @ul[spaced]
-- For each range, there is a replica that holds a **range lease**. This replica is known as the **leaseholder**. This replica manages the read and write requests for its range.
+- For each range, there is a replica that holds a **range lease**. This replica is known as the **leaseholder**, (usually the same as the Raft leader). This replica manages the read and write requests for its range.
 - When a user submits a SQL statement, the gateway node identifies the leaseholder for the range of interest, and sends the read or write request to the leaseholder.
 @ulend
 @snapend
@@ -241,9 +241,9 @@ This keyspace is partitioned into ranges.
 
 @snap[midpoint span-100]
 @ul[spaced]
-- SQL statements are issued from a gateway node.
-- The gateway node locates node with the leaseholder replica.
-- All read and write requests go through the leaseholder, so it contains the latest, verified replica.
+- A SQL query is issued from a gateway node.
+- The gateway node locates node with the leaseholder replica for the range of interest.
+- Since all read and write requests go through the leaseholder, that node contains the latest, verified replica.
 - For reads, the leaseholder simply sends back the requested data to the gateway node.
 @ulend
 @snapend
@@ -268,9 +268,9 @@ This keyspace is partitioned into ranges.
 
 @snap[south span-100]
 @ul[spaced]
-- Query Table 3 from Node 2 (the gateway node).
-- The replica of Range 3 is on Node 3.
-- Gateway node sends request to leaseholder node.
+- You query Table 3 (Range 3) from Node 2 (the gateway node).
+- The leaseholder replica of Range 3 is on Node 3.
+- Gateway node sends request to leaseholder replica on Node 3.
 - Leaseholder node sends read response to gateway node.
 @ulend
 @snapend
@@ -287,7 +287,7 @@ This keyspace is partitioned into ranges.
 
 @snap[south span-100]
 @ul[spaced]
-- Query Table 3 from Node 3 (the gateway and leaseholder node).
+- You query Table 3 (Range 3) from Node 3.
 @ulend
 @snapend
 
@@ -298,9 +298,9 @@ This keyspace is partitioned into ranges.
 
 @snap[midpoint span-100]
 @ul[spaced]
-- SQL statements are issued from a gateway node.
+- SQL insert is issued from a gateway node.
 - The gateway node locates and sends request to the node with the leaseholder replica.
-- Writes are a little more complicated than reads... the leaseholder needs to coordinate with the Raft leader.
+- But writes are a little more complicated than reads... The leaseholder needs to coordinate with the Raft leader.
 @ulend
 @snapend
 
@@ -315,9 +315,9 @@ This keyspace is partitioned into ranges.
 
 @snap[south span-100]
 @ul[spaced text-10]
-- Issue write from Node 3 to Table 1.
-- Leaseholder node for Range 1 is the same as the Raft leader node (Node 1).
-- Write request sent to Node 1.
+- You send insert statement from Node 3 to Table 1 (Range 1).
+- Leaseholder replica for Range 1 is the same replica as the Raft leader. This replica is on Node 1.
+- Request sent to Node 1.
 @ulend
 @snapend
 
@@ -332,8 +332,8 @@ This keyspace is partitioned into ranges.
 
 @snap[south span-100]
 @ul[spaced text-10]
-- Node 1 writes to Raft log and sends write request to follower nodes to append to Raft logs.
-- The first follower node to receive and append write to Raft log sends acknowledgement response to the Raft leader.
+- Replica on Node 1 writes to its Raft log and sends write request to its group's follower replica to append to Raft logs.
+- The first follower to receive and append write to Raft log sends acknowledgement to the Raft leader.
 - The Raft leader notifies the gateway node of successful write.
 @ulend
 @snapend
@@ -349,8 +349,9 @@ This keyspace is partitioned into ranges.
 
 @snap[south span-100]
 @ul[spaced]
-- Issue write from Node 1 to Table 1 (the gateway, leaseholder, and Raft leader node).
-- Node 1 writes to Raft log and sends write request to follower nodes to append to Raft logs.
+- You send insert statement from Node 1 to Table 1.
+- The leaseholder and Raft leader replica for Range 1 are on Node 1.
+- The replica on Node 1 writes to Raft log and sends write request to follower nodes to append to Raft logs.
 @ulend
 @snapend
 
@@ -365,7 +366,7 @@ This keyspace is partitioned into ranges.
 
 @snap[south span-100]
 @ul[spaced]
-- The first follower node to receive and append write to Raft log sends acknowledgement response to the Raft leader.
+- The first follower to receive and append write to Raft log sends acknowledgement to the Raft leader.
 @ulend
 @snapend
 
