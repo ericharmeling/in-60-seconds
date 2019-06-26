@@ -93,8 +93,8 @@
 
 @snap[west span-100]
 @ul[spaced]
-- **SQL interface**: Users access data in CockroachDB as entries in rows and columns of a table, with SQL statements. From the SQL perspective, data is represented as being in one place.
-- **Key-value store**: Under the hood, KV data are stored in partitions ("ranges") up to 64 MiB.
+- Users access data through the **SQL interface** as entries in rows and columns of a table. From a user's perspective, data is represented as being in one place.
+- Under the hood, CockroachDB stores data, including rows of table data, indexes, and metadata in a **key-value store** (RocksDB) that is replicated and distributed across multiple machines.
 @ulend
 @snapend
 
@@ -105,7 +105,6 @@
 
 @snap[midpoint span-100]
 @ul[spaced]
-- CockroachDB stores data, including rows of table data, indexes, and metadata in a key-value store (RocksDB).
 - For rows of table data, each key in the key-value store is a unique string that is based on the table ID and that row's primary key value.
 - Each value in the key-value store contains the row of values that corresponds to the unique key.
 - Indexes and metadata are stored a little differently... but still as key-value pairs in the key-value store.
