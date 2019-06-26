@@ -78,8 +78,8 @@
 
 @snap[west span-100]
 @ul[spaced]
-- **SQL interface**: Users access data in CockroachDB as entries in rows and columns of a table, with SQL statements. From the SQL perspective, data is represented as being in one place.
-- **Key-value store**: Under the hood, data are stored in partitions ("ranges") of key-value pairs that make up a key-value store. The ranges are replicated and distributed to multiple machines.
+- **SQL interface**: Users access data in CockroachDB as entries in rows and columns of a table, with SQL statements. From the SQL perspective, data is represented as being in one place. The **gateway node** is the node through which a user accesses the SQL interface.
+- **Key-value store**: Under the hood, data are stored in partitions ("ranges") up to 64 MiB in size of key-value pairs in a key-value store. These ranges are replicated and distributed to multiple machines.
 @ulend
 @snapend
 
@@ -144,7 +144,7 @@ These ranges are replicated and distributed to nodes.
 @snap[midpoint span-100]
 @ul[spaced]
 - A **node** is an instance of CockroachDB.
-- A **cluster** is a group of nodes. The nodes in a cluster communicate through requests and responses on a gossip network.
+- A **cluster** is a group of connected nodes. The nodes in a cluster communicate through a gossip network.
 - Data in the key-value store is partitioned into **ranges** of up to 64 MiB.
 @ulend
 @snapend
@@ -169,9 +169,9 @@ These ranges are replicated and distributed to nodes.
 
 @snap[midpoint span-100]
 @ul[spaced]
-- The **gateway node** is the node through which a user accesses the SQL interface.
-- One of the replicas holds a "range lease". This replica manages the read and write requests for its range. This replica is known as the **leaseholder**, and its node is the **leaseholder node**.
-- When a user submits a SQL statement, the gateway node identifies the leaseholder for the range of interest, and sends the read or write request to the leaseholder. (More on reads and writes  later...)
+- For each range, there is a replica that holds a "range lease". This replica is known as the **leaseholder** (its node is the **leaseholder node**). This replica manages the read and write requests for its range.
+- When a user submits a SQL statement, the gateway node identifies the leaseholder for the range of interest, and sends the read or write request to the leaseholder.
+- We will discuss reads and writes in more detail later...
 @ulend
 @snapend
 
@@ -182,9 +182,22 @@ These ranges are replicated and distributed to nodes.
 
 @snap[west span-50]
 @ul[spaced]
-- CockroachDB uses the Raft consensus algorithm to determine which replica to distribute across a cluster.
-- The replica chosen is the **leader**. The other replicas are the **followers**.
-- Timeouts run on each node to determine when to hold new elections.
+- CockroachDB uses the Raft consensus algorithm to guarantee that data is consistent across replicas.
+- Raft groups replicas of the same range into a **Raft group**.
+- Each group has a single **leader**. All other replicas are **followers**. The Raft leader is usually also the leaseholder.
+- Each group also has a **Raft log**, which contains a time-ordered log of writes to its range that the majority of replicas have agreed on.
+@ulend
+@snapend
+
+---
+
+## Replication & Distribution
+### Consensus with Raft
+
+@snap[west span-50]
+@ul[spaced]
+- The leader periodically distributes the latest log of writes to the followers in the group.
+- If a follower does not hear from the leader within a time, it starts a new election.
 @ulend
 @snapend
 
@@ -201,8 +214,8 @@ These ranges are replicated and distributed to nodes.
 @snap[midpoint span-100]
 @ul[spaced]
 - SQL statements are issued from a gateway node.
-- The gateway node locates and sends request to the node with the leaseholder replica.
-- Since all read and write requests go through the leaseholder, it contains the latest, verified replica. The leaseholder simply sends back the requested data to the gateway node.
+- The gateway node locates node with the leaseholder replica.
+- All read and write requests go through the leaseholder, it contains the latest, verified replica. The leaseholder simply sends back the requested data to the gateway node.
 @ulend
 @snapend
 
