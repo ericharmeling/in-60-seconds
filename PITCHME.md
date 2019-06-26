@@ -22,10 +22,6 @@
 @snap[midpoint text-left span-100]
 @ul[spaced text-25]
 - **What is CockroachDB?**
-- How is data stored?
-- How is data replicated and distributed?
-- How do reads and writes behave in CockroachDB?
-- How does CockroachDB tolerate failures?
 @ulend
 @snapend
 
@@ -72,20 +68,6 @@
 ---
 
 ## What is CockroachDB?
-### ACID Guarantee
-
-@snap[midpoint span-100]
-@ul[spaced]
-- **A**tomicity (*Transactions happen or they don't.*)
-- **C**onsistency (*Data is always in a valid state, across all locations.*)
-- **I**solatation (*Transactions are separate, and strongly serializable.*)
-- **D**urability (*The data is permanently and durably recorded.*)
-@ulend
-@snapend
-
----
-
-## What is CockroachDB?
 ### Architecture
 
 @snap[midpoint span-100]
@@ -105,9 +87,6 @@
 @ul[spaced text-25]
 - What is CockroachDB?
 - **How is data stored?**
-- How is data replicated and distributed?
-- How do reads and writes behave in CockroachDB?
-- How does CockroachDB tolerate failures?
 @ulend
 @snapend
 
@@ -172,8 +151,6 @@ This keyspace is partitioned into ranges.
 - What is CockroachDB?
 - How is data stored?
 - **How is data replicated and distributed?**
-- How do reads and writes behave in CockroachDB?
-- How does CockroachDB tolerate failures?
 @ulend
 @snapend
 
@@ -258,7 +235,6 @@ These ranges are replicated and distributed to nodes.
 - How is data stored?
 - How is data replicated and distributed?
 - **How do reads and writes behave in CockroachDB?**
-- How does CockroachDB tolerate failures?
 @ulend
 @snapend
 
