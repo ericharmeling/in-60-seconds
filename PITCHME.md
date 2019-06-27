@@ -94,20 +94,7 @@
 @snap[west span-100]
 @ul[spaced]
 - Users access data through the **SQL interface** as entries in rows and columns of a table. From a user's perspective, data is represented as being in one place.
-- Under the hood, CockroachDB stores data, including rows of table data, indexes, and metadata in a **key-value store** (RocksDB) that is replicated and distributed across multiple machines.
-@ulend
-@snapend
-
----
-
-## Storage
-### Key-value store
-
-@snap[midpoint span-100]
-@ul[spaced]
-- For rows of table data, each key in the key-value store is a unique string that is based on the table ID and that row's primary key value.
-- Each value in the key-value store contains the row of values that corresponds to the unique key.
-- Indexes and metadata are stored a little differently... but still as key-value pairs in the key-value store.
+- Under the hood, CockroachDB stores data, including rows of table data, indexes, and metadata in a **key-value store** (RocksDB) that is partitioned, replicated, and distributed across multiple machines.
 @ulend
 @snapend
 
@@ -187,7 +174,7 @@ This keyspace is partitioned into ranges.
 - CockroachDB uses the Raft consensus algorithm to guarantee that data is consistent across replicas.
 - Raft groups replicas of the same range into a **Raft group**. There is one Raft group per range.
 - Each group has a single **leader**. All other replicas are **followers**.
-- Each replica holds a **Raft log**, which contains a time-ordered log of writes to its range that the majority of replicas have agreed on.
+- Each replica holds a **Raft log**, which contains the time-ordered writes to its range. The majority of replicas must agree to a write before it can be written to the log.
 @ulend
 @snapend
 
@@ -242,7 +229,7 @@ This keyspace is partitioned into ranges.
 @ul[spaced]
 - A SQL query is issued from a gateway node.
 - The gateway node locates node with the leaseholder replica for the range of interest.
-- Since all read and write requests go through the leaseholder, that node contains the latest, verified replica.
+- All read and write requests go through the leaseholder, so that replica contains the latest, verified range data.
 - For reads, the leaseholder simply sends back the requested data to the gateway node.
 @ulend
 @snapend
@@ -299,7 +286,7 @@ This keyspace is partitioned into ranges.
 @ul[spaced]
 - SQL insert is issued from a gateway node.
 - The gateway node locates and sends request to the node with the leaseholder replica.
-- But writes are a little more complicated than reads... The leaseholder needs to coordinate with the Raft leader.
+- But writes are a little more complicated than reads... A Raft consensus is required.
 @ulend
 @snapend
 
@@ -331,7 +318,7 @@ This keyspace is partitioned into ranges.
 
 @snap[south span-100]
 @ul[spaced text-10]
-- Replica on Node 1 writes to its Raft log and sends write request to its group's follower replica to append to Raft logs.
+- Replica on Node 1 writes to its Raft log and sends it to the group's follower replicas to append to their Raft logs.
 - The first follower to receive and append write to Raft log sends acknowledgement to the Raft leader.
 - The Raft leader notifies the gateway node of successful write.
 @ulend
@@ -350,7 +337,7 @@ This keyspace is partitioned into ranges.
 @ul[spaced]
 - You send insert statement from Node 1 to Table 1.
 - The leaseholder and Raft leader replica for Range 1 are on Node 1.
-- The replica on Node 1 writes to Raft log and sends write request to follower nodes to append to Raft logs.
+- The replica on Node 1 writes to Raft log and sends it the followers to append to their Raft logs.
 @ulend
 @snapend
 
