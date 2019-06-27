@@ -174,7 +174,7 @@ This keyspace is partitioned into ranges.
 - CockroachDB uses the Raft consensus algorithm to guarantee that data is consistent across replicas.
 - Raft groups replicas of the same range into a **Raft group**. There is one Raft group per range.
 - Each group has a single **leader**. All other replicas are **followers**.
-- Each replica holds a **Raft log**, which contains the time-ordered writes to its range. The majority of replicas must agree to a write before it can be written to the log.
+- Each replica holds a **Raft log**, which contains the time-ordered writes to its range. The majority of replicas must agree to a write before it can be committed.
 @ulend
 @snapend
 
