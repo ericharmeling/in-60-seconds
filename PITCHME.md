@@ -68,11 +68,11 @@
 
 @snap[midpoint span-100]
 @ul[spaced]
-- **SQL** Layer: "*Translate client SQL queries to KV operations.*"
-- **Transactional** Layer: "*Allow atomic changes to multiple KV entries.*"
-- **Distribution** Layer: "*Present replicated KV ranges as a single entity.*"
-- **Replication** Layer: "*Consistently and synchronously replicate KV ranges across many nodes. This layer also enables consistent reads via leases.*"
-- **Storage** Layer: "*Write and read KV data on disk.*"
+- **SQL** Layer: "*Exposes the SQL API to developers and converts SQL statements into key-value operations used by the rest of the database.*"
+- **Transactional** Layer: "*Implements support for ACID transactions by coordinating concurrent operations.*"
+- **Distribution** Layer: "*Provides a unified view of your cluster's data.*"
+- **Replication** Layer: "*Copies data between nodes and ensures consistency between these copies by implementing our consensus algorithm.*"
+- **Storage** Layer: "*Reads and writes data to disk.*"
 @ulend
 @snapend
 
